@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Cash Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="get_started">GetStarted</string>
+    <string name="login">login</string>
+    <string name="password">password</string>
+    <string name="no_account">Still have no account?</string>
+
+</resources>
+
+
