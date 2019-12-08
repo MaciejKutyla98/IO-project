@@ -1,5 +1,6 @@
 package com.ioproject.CashUp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -47,5 +48,10 @@ public class LoginFields extends AppCompatActivity {
 
     public void printLoginAndPassword(){
         System.out.println(this.login + " " + this.password);
+    }
+
+    public void registration(View view) {
+        Intent intent_registration = new Intent(this, SignUp.class);
+        startActivity(intent_registration);
     }
 }
