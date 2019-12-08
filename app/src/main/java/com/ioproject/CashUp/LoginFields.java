@@ -19,10 +19,13 @@ public class LoginFields extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText inputName = (EditText) findViewById(R.id.login);
-                String name = inputName.getText().toString();
-
-                System.out.println(name);
+                EditText inputLogin = (EditText) findViewById(R.id.login);
+                String login = inputLogin.getText().toString();
+                EditText inputPassword = (EditText) findViewById(R.id.password);
+                String password = inputPassword.getText().toString();
+                setLogin(login);
+                setPassword(password);
+                printLoginAndPassword();
             }
         });
     }
