@@ -21,6 +21,7 @@
     <string name="birth_date">Birth Date</string>
     <string name="register_now">Register now!</string>
     <string name="i_agree_to_the_regulations">I agree to the regulations</string>
+    <string name="nazwaUzytkownika">nazwaUzytkownika</string>
     <string-array name="days">
         <item>1</item>
         <item>2</item>
