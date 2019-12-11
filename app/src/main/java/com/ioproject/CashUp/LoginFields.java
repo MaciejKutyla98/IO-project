@@ -62,8 +62,8 @@ public class LoginFields extends AppCompatActivity {
     public void home(View view) {
         EditText inputLogin = (EditText) findViewById(R.id.login);
         String login = inputLogin.getText().toString();
-        Intent intent_home= new Intent(this, Home.class);
-        intent_home.putExtra("nazwaUzytkownika", login);
-        startActivity(intent_home);
+       // Intent intent_home= new Intent(this, Home.class);
+       // intent_home.putExtra("nazwaUzytkownika", login);
+       // startActivity(intent_home);
     }
 }
