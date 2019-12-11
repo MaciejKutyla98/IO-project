@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginFields extends AppCompatActivity {
     private String login;
@@ -24,9 +25,12 @@ public class LoginFields extends AppCompatActivity {
                 String login = inputLogin.getText().toString();
                 EditText inputPassword = (EditText) findViewById(R.id.password);
                 String password = inputPassword.getText().toString();
-                setLogin(login);
-                setPassword(password);
-                printLoginAndPassword();
+                if (login.equals("Maciek") && password.equals("1234")){
+                    home(v);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Błędne dane logowania", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -53,5 +57,13 @@ public class LoginFields extends AppCompatActivity {
     public void registration(View view) {
         Intent intent_registration = new Intent(this, SignUp.class);
         startActivity(intent_registration);
+    }
+
+    public void home(View view) {
+        EditText inputLogin = (EditText) findViewById(R.id.login);
+        String login = inputLogin.getText().toString();
+       // Intent intent_home= new Intent(this, Home.class);
+       // intent_home.putExtra("nazwaUzytkownika", login);
+       // startActivity(intent_home);
     }
 }
