@@ -22,10 +22,10 @@ public class LoginFields extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditText inputLogin = (EditText) findViewById(R.id.login);
-                String login = inputLogin.getText().toString();
+                setLogin(inputLogin.getText().toString());
                 EditText inputPassword = (EditText) findViewById(R.id.password);
-                String password = inputPassword.getText().toString();
-                if (login.equals("Maciek") && password.equals("1234")){
+                setPassword(inputPassword.getText().toString());
+                if (getLogin().equals("Maciek") && getPassword().equals("1234")){
                     home(v);
                 }
                 else{
@@ -60,10 +60,10 @@ public class LoginFields extends AppCompatActivity {
     }
 
     public void home(View view) {
-        EditText inputLogin = (EditText) findViewById(R.id.login);
-        String login = inputLogin.getText().toString();
+        //EditText inputLogin = (EditText) findViewById(R.id.login);
+        //String login = inputLogin.getText().toString();
         Intent intent_home= new Intent(this, Home.class);
-        intent_home.putExtra("nazwaUzytkownika", login);
+        intent_home.putExtra("nazwaUzytkownika", this.login);
         startActivity(intent_home);
     }
 }

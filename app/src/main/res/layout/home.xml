@@ -28,7 +28,7 @@
         android:layout_width="140dp"
         android:layout_height="60dp"
         android:background="@drawable/rounded_textview"
-        android:text="@string/cash_up"
+        android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="30sp"
