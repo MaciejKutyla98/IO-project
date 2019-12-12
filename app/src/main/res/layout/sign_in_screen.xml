@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/swinka">
+    android:layout_height="match_parent">
 
 
     <EditText
@@ -55,6 +54,7 @@
         android:layout_marginBottom="24dp"
         android:text="@string/no_account"
         android:textAppearance="@style/no_account"
+        android:textColor="#D32F2F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.226"
@@ -69,8 +69,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="#006699"
+        android:backgroundTint="#D32F2F"
         android:text="@string/sign_in"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
@@ -86,9 +87,10 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="#006699"
-        android:text="@string/sign_up"
+        android:backgroundTint="#D32F2F"
         android:onClick="registration"
+        android:text="@string/sign_up"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.967"
