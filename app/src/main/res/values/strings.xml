@@ -22,7 +22,6 @@
     <string name="register_now">Register now!</string>
     <string name="i_agree_to_the_regulations">I agree to the regulations</string>
     <string name="nazwaUzytkownika">nazwaUzytkownika</string>
-    <string name="cash_up">Cash Up</string>
     <string-array name="days">
         <item>1</item>
         <item>2</item>
@@ -102,8 +101,10 @@
         <item>2018</item>
         <item>2019</item>
     </string-array>
-
-
+    <string name="title_activity_home2">home2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
 </resources>
 
 
