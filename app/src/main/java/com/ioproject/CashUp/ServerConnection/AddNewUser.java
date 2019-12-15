@@ -1,15 +1,7 @@
 package com.ioproject.CashUp.ServerConnection;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Spinner;
-
-
-import com.ioproject.CashUp.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -147,7 +139,7 @@ public class AddNewUser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        conn.setDoOutput(true);
+//        conn.setDoOutput(true);
 
 
 

@@ -1,10 +1,9 @@
 package com.ioproject.CashUp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -81,6 +80,7 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
 
                        String add = AddNewUser.GetText(et_name, et_surname, et_email, et_login,
                                et_password, et_b_day, et_b_month, et_b_year);
+                       System.out.println(add);
 
                    } catch (UnsupportedEncodingException ex){
                        System.out.println(ex);
