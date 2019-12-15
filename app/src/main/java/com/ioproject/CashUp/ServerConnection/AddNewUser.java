@@ -11,7 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
 
 public class AddNewUser {
 
@@ -43,32 +42,15 @@ public class AddNewUser {
 
         // Create data variable for sent values to server
 
-        String data = URLEncoder.encode("command", "UTF-8")
-                + "=" + URLEncoder.encode("add_new_user", "UTF-8");
 
-        data += "&" + URLEncoder.encode("name", "UTF-8") + "="
-                + URLEncoder.encode(Name, "UTF-8");
-
-        data += "&" + URLEncoder.encode("email", "UTF-8") + "="
-                + URLEncoder.encode(Email, "UTF-8");
-
-        data += "&" + URLEncoder.encode("login", "UTF-8") + "="
-                + URLEncoder.encode(Login, "UTF-8");
-
-        data += "&" + URLEncoder.encode("password", "UTF-8")
-                + "=" + URLEncoder.encode(Password, "UTF-8");
-
-        data += "&" + URLEncoder.encode("birth_date", "UTF-8")
-                + "=" + URLEncoder.encode(B_Date, "UTF-8");
-
-
-        //  TODO: sex and reset date not in sing up view
-        data += "&" + URLEncoder.encode("sex", "UTF-8")
-                + "=" + URLEncoder.encode("M", "UTF-8");
-
-        data += "&" + URLEncoder.encode("reset_date", "UTF-8")
-                + "=" + URLEncoder.encode("1", "UTF-8");
-
+        String data = "{" + "\"command\": " + "\"add_new_user\"";
+        data += ", " + "\"name\": \"" + Name + "\"";
+        data += ", " + "\"email\": \"" + Email + "\"";
+        data += ", " + "\"login\": \"" + Login + "\"";
+        data += ", " + "\"password\": \"" + Password + "\"";
+        data += ", " + "\"birth_date\": \"" + B_Date + "\"";
+        data += ", " + "\"sex\": \"" + "M" + "\"";
+        data += ", " + "\"reset_date\": \"" + "1" + "\"}";
 
 
         String text = "";
@@ -87,17 +69,14 @@ public class AddNewUser {
         URLConnection conn = null;
         try {
             conn = (HttpURLConnection) url.openConnection();
-//            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-//            wr.write(data);
-//            wr.flush();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        conn.setDoOutput(true);
-        ((HttpURLConnection) conn).setRequestMethod("POST");// do not use "GET" in your case
 
-        conn.setRequestProperty("Content-Type", "application/json");//whatever you want
+        ((HttpURLConnection) conn).setRequestMethod("POST");
 
+        conn.setRequestProperty("Content-Type", "application/json");
         conn.setRequestProperty("Content-Length", "" + data.getBytes().length);
 
         conn.setUseCaches(false);//set true to enable Cache for the req
@@ -129,8 +108,6 @@ public class AddNewUser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
 
         // Show response on activity
         return "";
