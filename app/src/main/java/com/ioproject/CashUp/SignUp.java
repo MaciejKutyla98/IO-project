@@ -12,76 +12,55 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.ioproject.CashUp.ServerConnection.AddNewUser;
+import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 
 
 public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private String name;
-    private String surname;
-    private String day;
-    private String month;
-    private String year;
-    private String email;
-    private String login;
-    private String password;
-    private Button signUpButton;
-    private CheckBox termsAndCond;
-
-
-    EditText et_name, et_surname, et_email, et_login, et_password;
-    Spinner et_b_day, et_b_month, et_b_year;
-
+//    private String name;
+//    private String surname;
+//    private String day;
+//    private String month;
+//    private String year;
+//    private String email;
+//    private String login;
+//    private String password;
+//
+//    private Button signUpButton;
+//    private CheckBox termsAndCond;
+    private String [] months = new String[] {"Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesien", "Październik", "Listopad", "Grudzień"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
-        Spinner days = findViewById(R.id.spinner_day);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
-        days.setAdapter(adapter);
-        days.setOnItemSelectedListener(this);
-
-        Spinner months = findViewById(R.id.spinner_months);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
-        months.setAdapter(adapter2);
-        months.setOnItemSelectedListener(this);
-
-        Spinner years = findViewById(R.id.spinner_years);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
-        years.setAdapter(adapter3);
-        years.setOnItemSelectedListener(this);
-
-       termsAndCond = (CheckBox) findViewById(R.id.regulamin);
-       signUpButton = (Button) findViewById(R.id.registratrion_button);
-       signUpButton.setOnClickListener(new View.OnClickListener(){
+        handleSpinners();
+        final CheckBox termsAndCond = (CheckBox) findViewById(R.id.regulamin);
+        Button signUpButton = (Button) findViewById(R.id.registratrion_button);
+        signUpButton.setOnClickListener(new View.OnClickListener(){
            @Override
            public void onClick(View v){
                if(termsAndCond.isChecked()){
-                   System.out.println("elo");;
+                   System.out.println("elo");
 
-                   et_name = (EditText) findViewById(R.id.name);
-                   et_surname = (EditText) findViewById(R.id.surname);
-                   et_email = (EditText) findViewById(R.id.email);
-                   et_login = (EditText) findViewById(R.id.login);
-                   et_password = (EditText) findViewById(R.id.password);
-
-                   et_b_day = (Spinner) findViewById(R.id.spinner_day);
-                   et_b_month = (Spinner) findViewById(R.id.spinner_months);
-                   et_b_year = (Spinner) findViewById(R.id.spinner_years);
+                   String name = ((EditText) findViewById(R.id.name)).getText().toString();
+                   String surname = ((EditText) findViewById(R.id.surname)).getText().toString();
+                   String email = ((EditText) findViewById(R.id.name)).getText().toString();
+                   String login = ((EditText) findViewById(R.id.login)).getText().toString();
+                   String password = ((EditText) findViewById(R.id.password_registration)).getText().toString();
+                   String selectedMonthName = ((Spinner) findViewById(R.id.spinner_months)).getSelectedItem().toString();
+                   Integer selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
+                   String birthday = ((Spinner) findViewById(R.id.spinner_day)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.spinner_years)).getSelectedItem().toString();
 
                    try {
 
-                       String add = AddNewUser.GetText(et_name, et_surname, et_email, et_login,
-                               et_password, et_b_day, et_b_month, et_b_year);
+                       String add = DataBaseRequests.connect(DataBaseRequests.addNewUser(name, surname, email, login,
+                               password, birthday));
                        System.out.println(add);
 
                    } catch (UnsupportedEncodingException ex){
@@ -102,6 +81,25 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
         Intent intent_registration = new Intent(this, SignUp.class);
         startActivity(intent_registration);
     }
+    public void handleSpinners(){
+        Spinner days = findViewById(R.id.spinner_day);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
+        days.setAdapter(adapter);
+        days.setOnItemSelectedListener(this);
+
+        Spinner months = findViewById(R.id.spinner_months);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
+        months.setAdapter(adapter2);
+        months.setOnItemSelectedListener(this);
+
+        Spinner years = findViewById(R.id.spinner_years);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
+        years.setAdapter(adapter3);
+        years.setOnItemSelectedListener(this);
+    }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
        // String text = parent.getItemAtPosition(position).toString();
@@ -112,68 +110,68 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getDay() {
-        return day;
-    }
-
-    public void setDay(String day) {
-        this.day = day;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public String getSurname() {
+//        return surname;
+//    }
+//
+//    public void setSurname(String surname) {
+//        this.surname = surname;
+//    }
+//
+//    public String getDay() {
+//        return day;
+//    }
+//
+//    public void setDay(String day) {
+//        this.day = day;
+//    }
+//
+//    public String getMonth() {
+//        return month;
+//    }
+//
+//    public void setMonth(String month) {
+//        this.month = month;
+//    }
+//
+//    public String getYear() {
+//        return year;
+//    }
+//
+//    public void setYear(String year) {
+//        this.year = year;
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public String getLogin() {
+//        return login;
+//    }
+//
+//    public void setLogin(String login) {
+//        this.login = login;
+//    }
+//
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 
 }

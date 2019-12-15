@@ -1,8 +1,5 @@
 package com.ioproject.CashUp.ServerConnection;
 
-import android.widget.EditText;
-import android.widget.Spinner;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,50 +9,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class AddNewUser {
+public class DataBaseRequests {
 
-    // Create GetText Metod
-    public static String GetText(EditText name, EditText surname, EditText email,
-                        EditText login, EditText password,
-                        Spinner b_day, Spinner b_month, Spinner b_year) throws IOException {
-
-        String Name, Surname, Email, Login, Password, B_Date;
-
-
-        // Get user defined values
-//        Name = name.getText().toString();
-//        Surname = surname.getText().toString();  // TODO: Set surname in DB and script
-//        Email = email.getText().toString();
-//        Login = login.getText().toString();
-//        Password = password.getText().toString();
-//        B_Date = b_year.getSelectedItem().toString() + "-";
-//        B_Date += b_month.getSelectedItem().toString() + "-";
-//        B_Date += b_day.getSelectedItem().toString();
-
-        Name = "test";
-        Surname = "test";
-        Email = "test";
-        Login = "test";
-        Password = "test";
-        B_Date = "01-01-1997";
-
+    // Create connect Metod
+    public static String connect(String data) throws IOException {
 
         // Create data variable for sent values to server
-
-
-        String data = "{" + "\"command\": " + "\"add_new_user\"";
-        data += ", " + "\"name\": \"" + Name + "\"";
-        data += ", " + "\"email\": \"" + Email + "\"";
-        data += ", " + "\"login\": \"" + Login + "\"";
-        data += ", " + "\"password\": \"" + Password + "\"";
-        data += ", " + "\"birth_date\": \"" + B_Date + "\"";
-        data += ", " + "\"sex\": \"" + "M" + "\"";
-        data += ", " + "\"reset_date\": \"" + "1" + "\"}";
 
 
         String text = "";
         BufferedReader reader = null;
 
+        System.out.println(data);
 
         URL url = null;
         try {
@@ -112,6 +77,18 @@ public class AddNewUser {
         // Show response on activity
         return "";
 
+    }
+
+    public static String addNewUser (String name, String surname, String email, String login, String password, String birthday_date){
+        String data = "{" + "\"command\": " + "\"add_new_user\"";
+        data += ", " + "\"name\": \"" + name + "\"";
+        data += ", " + "\"email\": \"" + email + "\"";
+        data += ", " + "\"login\": \"" + login + "\"";
+        data += ", " + "\"password\": \"" + password + "\"";
+        data += ", " + "\"birth_date\": \"" + birthday_date + "\"";
+        data += ", " + "\"sex\": \"" + "K" + "\"";
+        data += ", " + "\"reset_date\": \"" + "1" + "\"}";
+        return data;
     }
 
 }
