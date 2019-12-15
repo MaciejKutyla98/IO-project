@@ -6,65 +6,19 @@ import android.widget.Spinner;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-//public class AddNewUser extends Activity {
-//
-//    TextView content;
-//    EditText name, surname, email, login, password;
-//    Spinner b_day, b_month, b_year;
-//
-//    String Name, Surname, Email, Login, Password, B_Date;
-//
-//    /**
-//     * Called when the activity is first created.
-//     */
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_sign_up);
-//
-//        content = (TextView) findViewById(R.id.content);
-//
-//        name = (EditText) findViewById(R.id.name);
-//        surname = (EditText) findViewById(R.id.surname);
-//        email = (EditText) findViewById(R.id.email);
-//        login = (EditText) findViewById(R.id.login);
-//        password = (EditText) findViewById(R.id.password);
-//
-//        b_day = (Spinner) findViewById(R.id.spinner_day);
-//        b_month = (Spinner) findViewById(R.id.spinner_months);
-//        b_year = (Spinner) findViewById(R.id.spinner_years);
-//
-//
-//
-//        Button saveme = (Button) findViewById(R.id.registratrion_button);
-//
-//        saveme.setOnClickListener(new Button.OnClickListener() {
-//
-//            public void onClick(View v) {
-//                try {
-//                    GetText();
-//                } catch (Exception ex) {
-//                    content.setText(" url exeption! ");
-//                }
-//            }
-//        });
-//    }
-
-
 public class AddNewUser {
-
 
     // Create GetText Metod
     public static String GetText(EditText name, EditText surname, EditText email,
                         EditText login, EditText password,
-                        Spinner b_day, Spinner b_month, Spinner b_year) throws UnsupportedEncodingException {
+                        Spinner b_day, Spinner b_month, Spinner b_year) throws IOException {
 
         String Name, Surname, Email, Login, Password, B_Date;
 
@@ -80,7 +34,7 @@ public class AddNewUser {
 //        B_Date += b_day.getSelectedItem().toString();
 
         Name = "test";
-        Name = "test";
+        Surname = "test";
         Email = "test";
         Login = "test";
         Password = "test";
@@ -132,17 +86,28 @@ public class AddNewUser {
 
         URLConnection conn = null;
         try {
-            conn = url.openConnection();
-            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-            wr.write(data);
-            wr.flush();
+            conn = (HttpURLConnection) url.openConnection();
+//            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+//            wr.write(data);
+//            wr.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
 //        conn.setDoOutput(true);
+        ((HttpURLConnection) conn).setRequestMethod("POST");// do not use "GET" in your case
 
+        conn.setRequestProperty("Content-Type", "application/json");//whatever you want
 
+        conn.setRequestProperty("Content-Length", "" + data.getBytes().length);
 
+        conn.setUseCaches(false);//set true to enable Cache for the req
+        conn.setDoOutput(true);//enable to write data to output stream
+        OutputStream os = conn.getOutputStream();
+        os.write(data.getBytes());
+        os.flush();
+        os.close();
+
+        conn.connect();
             // Get the server response
 
         try {

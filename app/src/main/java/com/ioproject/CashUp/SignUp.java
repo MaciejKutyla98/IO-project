@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.ioproject.CashUp.ServerConnection.AddNewUser;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 
@@ -84,6 +85,8 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
 
                    } catch (UnsupportedEncodingException ex){
                        System.out.println(ex);
+                   } catch (IOException e) {
+                       e.printStackTrace();
                    }
 
                }

@@ -18,9 +18,10 @@ public class LoginFields extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in_screen);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
         signInButton = (Button) findViewById(R.id.sign_in);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
