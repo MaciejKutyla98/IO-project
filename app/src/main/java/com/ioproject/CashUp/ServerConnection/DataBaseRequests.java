@@ -16,7 +16,6 @@ public class DataBaseRequests {
 
         // Create data variable for sent values to server
 
-
         String text = "";
         BufferedReader reader = null;
 

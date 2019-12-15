@@ -35,15 +35,16 @@ public class LoginFields extends AppCompatActivity {
                 String password = ((EditText) findViewById(R.id.password)).getText().toString();
                 String result = null;
                 try {
-                    result = DataBaseRequests.connect(DataBaseRequests.loginUser(login, password));
+                    result = DataBaseRequests.connect(DataBaseRequests.loginUser(username, password));
+                    System.out.println(result);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if(result.equals("Login failed")){
-                    Toast.makeText(getApplicationContext(), "nie udało się zalogować ", Toast.LENGTH_SHORT).show();
+                if(result.equals("0")){
+                    Toast.makeText(getApplicationContext(), "błędne dane logowania", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), username + "logowanie powiodło się", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), username + " logowanie powiodło się", Toast.LENGTH_SHORT).show();
                     home(v);
                 }
             }

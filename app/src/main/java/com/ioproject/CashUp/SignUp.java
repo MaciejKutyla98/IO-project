@@ -21,17 +21,6 @@ import java.util.Arrays;
 
 public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-//    private String name;
-//    private String surname;
-//    private String day;
-//    private String month;
-//    private String year;
-//    private String email;
-//    private String login;
-//    private String password;
-//
-//    private Button signUpButton;
-//    private CheckBox termsAndCond;
     private String [] months = new String[] {"Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesien", "Październik", "Listopad", "Grudzień"};
 
     @Override
@@ -51,7 +40,7 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
                    String name = ((EditText) findViewById(R.id.name)).getText().toString();
                    String surname = ((EditText) findViewById(R.id.surname)).getText().toString();
                    String email = ((EditText) findViewById(R.id.name)).getText().toString();
-                   String login = ((EditText) findViewById(R.id.login)).getText().toString();
+                   String login = ((EditText) findViewById(R.id.login_reg)).getText().toString();
                    String password = ((EditText) findViewById(R.id.password_registration)).getText().toString();
                    String selectedMonthName = ((Spinner) findViewById(R.id.spinner_months)).getSelectedItem().toString();
                    Integer selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
@@ -109,69 +98,4 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
-
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public String getSurname() {
-//        return surname;
-//    }
-//
-//    public void setSurname(String surname) {
-//        this.surname = surname;
-//    }
-//
-//    public String getDay() {
-//        return day;
-//    }
-//
-//    public void setDay(String day) {
-//        this.day = day;
-//    }
-//
-//    public String getMonth() {
-//        return month;
-//    }
-//
-//    public void setMonth(String month) {
-//        this.month = month;
-//    }
-//
-//    public String getYear() {
-//        return year;
-//    }
-//
-//    public void setYear(String year) {
-//        this.year = year;
-//    }
-//
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-//
-//    public String getLogin() {
-//        return login;
-//    }
-//
-//    public void setLogin(String login) {
-//        this.login = login;
-//    }
-//
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
-
 }

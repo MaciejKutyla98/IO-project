@@ -168,7 +168,7 @@
         android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/login"
+        android:id="@+id/login_reg"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
