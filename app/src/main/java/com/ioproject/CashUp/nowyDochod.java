@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
+public class nowyDochod extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
-    private Button zapiszWydatek;
+    private Button zapiszDochod;
     private Button anuluj;
 
 
@@ -20,11 +20,11 @@ public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nowy_wydatek);
+        setContentView(R.layout.activity_nowy_dochod);
 
         String [] options={"ODD NUMBER","EVEN NUMBER","PRIME NUMBER","MULTIPLE OF 3","EXACT NUMBER" };
 
-        Spinner kategoria = findViewById(R.id.kategorieWydatkow);
+        Spinner kategoria = findViewById(R.id.kategorieDochodow);
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,options);
         adapter4.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
         kategoria.setAdapter(adapter4);
@@ -49,15 +49,15 @@ public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItem
         years.setOnItemSelectedListener(this);
 
 
-        zapiszWydatek = (Button) findViewById(R.id.zapiszWydatek);
-        zapiszWydatek.setOnClickListener(new View.OnClickListener() {
+        zapiszDochod = (Button) findViewById(R.id.zapiszDochód);
+        zapiszDochod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 backToHome(v);
             }
         });
 
-        anuluj = (Button) findViewById(R.id.powrot);
+        anuluj = (Button) findViewById(R.id.powrot2);
         anuluj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
