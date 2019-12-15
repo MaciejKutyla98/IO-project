@@ -13,6 +13,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.ioproject.CashUp.ServerConnection.AddNewUser;
+
+import java.io.UnsupportedEncodingException;
+
+
 public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private String name;
@@ -25,6 +30,10 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
     private String password;
     private Button signUpButton;
     private CheckBox termsAndCond;
+
+
+    EditText et_name, et_surname, et_email, et_login, et_password;
+    Spinner et_b_day, et_b_month, et_b_year;
 
 
     @Override
@@ -57,6 +66,26 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
            public void onClick(View v){
                if(termsAndCond.isChecked()){
                    System.out.println("elo");;
+
+                   et_name = (EditText) findViewById(R.id.name);
+                   et_surname = (EditText) findViewById(R.id.surname);
+                   et_email = (EditText) findViewById(R.id.email);
+                   et_login = (EditText) findViewById(R.id.login);
+                   et_password = (EditText) findViewById(R.id.password);
+
+                   et_b_day = (Spinner) findViewById(R.id.spinner_day);
+                   et_b_month = (Spinner) findViewById(R.id.spinner_months);
+                   et_b_year = (Spinner) findViewById(R.id.spinner_years);
+
+                   try {
+
+                       String add = AddNewUser.GetText(et_name, et_surname, et_email, et_login,
+                               et_password, et_b_day, et_b_month, et_b_year);
+
+                   } catch (UnsupportedEncodingException ex){
+                       System.out.println(ex);
+                   }
+
                }
                else {
                    Toast.makeText(getApplicationContext(), "Nie zaakceptowałeś regulaminu", Toast.LENGTH_SHORT).show();
