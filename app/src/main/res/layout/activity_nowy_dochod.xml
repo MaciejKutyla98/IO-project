@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/kategorieWydatkow"
+        android:id="@+id/kategorieDochodow"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
@@ -48,11 +48,11 @@
         app:layout_constraintVertical_bias="0.101" />
 
     <EditText
-        android:id="@+id/kwotaWydatku"
+        android:id="@+id/kwotaDochodu"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:hint="Wprowadż koszt"
+        android:hint="Wprowadż dochód"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +121,7 @@
         app:layout_constraintVertical_bias="0.6" />
 
     <Button
-        android:id="@+id/zapiszWydatek"
+        android:id="@+id/zapiszDochód"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
@@ -129,7 +129,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:background="#D32F2F"
-        android:text="Zapisz wydatek"
+        android:text="Zapisz dochód"
         android:textColor="#F5F1EEEE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +139,7 @@
         app:layout_constraintVertical_bias="0.95" />
 
     <Button
-        android:id="@+id/dodajKatygorieW"
+        android:id="@+id/dodajKatygorieD"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
@@ -157,7 +157,7 @@
         app:layout_constraintVertical_bias="0.8" />
 
     <Button
-        android:id="@+id/powrot"
+        android:id="@+id/powrot2"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginStart="12dp"
@@ -175,7 +175,7 @@
         app:layout_constraintVertical_bias="0.95" />
 
     <EditText
-        android:id="@+id/nowaKategoriaWydatku"
+        android:id="@+id/nowaKategoriaDochodu"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
