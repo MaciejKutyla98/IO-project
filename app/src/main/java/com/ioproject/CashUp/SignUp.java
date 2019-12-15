@@ -55,8 +55,8 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
                    String password = ((EditText) findViewById(R.id.password_registration)).getText().toString();
                    String selectedMonthName = ((Spinner) findViewById(R.id.spinner_months)).getSelectedItem().toString();
                    Integer selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
-                   String birthday = ((Spinner) findViewById(R.id.spinner_day)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.spinner_years)).getSelectedItem().toString();
 
+                   String birthday = ((Spinner) findViewById(R.id.spinner_years)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.spinner_day)).getSelectedItem().toString();
                    try {
 
                        String add = DataBaseRequests.connect(DataBaseRequests.addNewUser(name, surname, email, login,

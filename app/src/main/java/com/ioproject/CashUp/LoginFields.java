@@ -2,12 +2,16 @@ package com.ioproject.CashUp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.os.StrictMode;
+
+import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
+
+import java.io.IOException;
 
 public class LoginFields extends AppCompatActivity {
     private String login;
@@ -27,16 +31,20 @@ public class LoginFields extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText inputLogin = (EditText) findViewById(R.id.login);
-                setLogin(inputLogin.getText().toString());
-                EditText inputPassword = (EditText) findViewById(R.id.password);
-                setPassword(inputPassword.getText().toString());
-                if (getLogin().equals("Maciek") && getPassword().equals("1234")){
-                    home(v);
+                String username = ((EditText) findViewById(R.id.login)).getText().toString();
+                String password = ((EditText) findViewById(R.id.password)).getText().toString();
+                String result = null;
+                try {
+                    result = DataBaseRequests.connect(DataBaseRequests.loginUser(login, password));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(result.equals("Login failed")){
+                    Toast.makeText(getApplicationContext(), "nie udało się zalogować ", Toast.LENGTH_SHORT).show();
                 }
                 else{
-
-                    Toast.makeText(getApplicationContext(), "Błędne dane logowania", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), username + "logowanie powiodło się", Toast.LENGTH_SHORT).show();
+                    home(v);
                 }
             }
         });
