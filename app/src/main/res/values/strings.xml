@@ -105,6 +105,22 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
+    <string name="nazwa">Nazwa:</string>
+    <string name="wprowad_nazw">Wprowadź nazwę</string>
+    <string-array name="katygorie">
+        <item>Nauka</item>
+        <item>Zakupy</item>
+        <item>Opłata za mieszkanie</item>
+        <item>Kwiecień</item>
+        <item>Maj</item>
+        <item>Czerwiec</item>
+        <item>Lipiec</item>
+        <item>Sierpień</item>
+        <item>Wrzesien</item>
+        <item>Październik</item>
+        <item>Listopad</item>
+        <item>Grudzień</item>
+    </string-array>
 </resources>
 
 

@@ -45,4 +45,52 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/wybor"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/circle"
+        android:text="+"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <Button
+        android:id="@+id/nowyDochod"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/circle"
+        android:text="Dochód"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:layout_constraintVertical_bias="0.80" />
+
+    <Button
+        android:id="@+id/nowyWydatek"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/circle"
+        android:text="Wydatek"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:layout_constraintVertical_bias="0.65" />
+
 </android.support.constraint.ConstraintLayout>
