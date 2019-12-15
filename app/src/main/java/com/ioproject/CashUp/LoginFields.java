@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.os.StrictMode;
 
 public class LoginFields extends AppCompatActivity {
     private String login;
@@ -18,6 +19,10 @@ public class LoginFields extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in_screen);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         signInButton = (Button) findViewById(R.id.sign_in);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +35,7 @@ public class LoginFields extends AppCompatActivity {
                     home(v);
                 }
                 else{
+
                     Toast.makeText(getApplicationContext(), "Błędne dane logowania", Toast.LENGTH_SHORT).show();
                 }
             }
