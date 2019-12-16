@@ -14,7 +14,6 @@ import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -77,19 +76,19 @@ public class NewIncome extends AppCompatActivity implements AdapterView.OnItemSe
         kategoria.setAdapter(adapter4);
         kategoria.setOnItemSelectedListener(this);
 
-        handleSpinners();
+  //      handleSpinners();
+
+        setUserId(getIntent().getStringExtra("idUzytkownika"));
+        setUsername(getIntent().getStringExtra("nazwaUzytkownika"));
 
         zapiszDochod = (Button) findViewById(R.id.zapiszDochód);
         zapiszDochod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setUserId(getIntent().getStringExtra("idUzytkownika"));
-                setUsername(getIntent().getStringExtra("nazwaUzytkownika"));
-
                 String category = ((Spinner) findViewById(R.id.kategorieDochodow)).getSelectedItem().toString();
-                String selectedMonthName = ((Spinner) findViewById(R.id.miesiac)).getSelectedItem().toString();
-                Integer selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
-                String date = ((Spinner) findViewById(R.id.rok)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.dzien)).getSelectedItem().toString();
+    //            String selectedMonthName = ((Spinner) findViewById(R.id.miesiac)).getSelectedItem().toString();
+        //        Integer selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
+  //              String date = ((Spinner) findViewById(R.id.rok)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.dzien)).getSelectedItem().toString();
                 String cost = ((EditText) findViewById(R.id.kwotaDochodu)).getText().toString();
                 String description = ((EditText) findViewById(R.id.opisDochodu)).getText().toString();
 
@@ -113,27 +112,27 @@ public class NewIncome extends AppCompatActivity implements AdapterView.OnItemSe
 
     }
 
-    public void handleSpinners(){
-
-        Spinner days = findViewById(R.id.dzien);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
-        days.setAdapter(adapter);
-        days.setOnItemSelectedListener(this);
-
-        Spinner months = findViewById(R.id.miesiac);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
-        months.setAdapter(adapter2);
-        months.setOnItemSelectedListener(this);
-
-        Spinner years = findViewById(R.id.rok);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_item);
-        adapter3.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
-        years.setAdapter(adapter3);
-        years.setOnItemSelectedListener(this);
-
-    }
+//    public void handleSpinners(){
+//
+//        Spinner days = findViewById(R.id.dzien);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
+//        days.setAdapter(adapter);
+//        days.setOnItemSelectedListener(this);
+//
+//        Spinner months = findViewById(R.id.miesiac);
+//        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
+//        adapter2.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
+//        months.setAdapter(adapter2);
+//        months.setOnItemSelectedListener(this);
+//
+//        Spinner years = findViewById(R.id.rok);
+//        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_item);
+//        adapter3.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
+//        years.setAdapter(adapter3);
+//        years.setOnItemSelectedListener(this);
+//
+//    }
     public void backToHome(View view) {
         Intent intent_newBill = new Intent(this, LoggedInUserView.class);
         intent_newBill.putExtra("nazwaUzytkownika", getUsername());

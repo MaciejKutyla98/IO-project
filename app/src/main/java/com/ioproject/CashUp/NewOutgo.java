@@ -13,7 +13,6 @@ import android.widget.Spinner;
 import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
@@ -54,36 +53,34 @@ public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSel
         kategoria.setAdapter(adapter4);
         kategoria.setOnItemSelectedListener(this);
 
-        Spinner days = findViewById(R.id.dzien);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
-        days.setAdapter(adapter);
-        days.setOnItemSelectedListener(this);
-
-        final Spinner months = findViewById(R.id.miesiac);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
-        months.setAdapter(adapter2);
-        months.setOnItemSelectedListener(this);
-
-        Spinner years = findViewById(R.id.rok);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_item);
-        adapter3.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
-        years.setAdapter(adapter3);
-        years.setOnItemSelectedListener(this);
-
+//        Spinner days = findViewById(R.id.dzien);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
+//        days.setAdapter(adapter);
+//        days.setOnItemSelectedListener(this);
+//
+//        final Spinner months = findViewById(R.id.miesiac);
+//        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
+//        adapter2.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
+//        months.setAdapter(adapter2);
+//        months.setOnItemSelectedListener(this);
+//
+//        Spinner years = findViewById(R.id.rok);
+//        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_item);
+//        adapter3.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
+//        years.setAdapter(adapter3);
+//        years.setOnItemSelectedListener(this);
+        setUserId(getIntent().getStringExtra("idUzytkownika"));
+        setUsername(getIntent().getStringExtra("nazwaUzytkownika"));
 
         zapiszWydatek = (Button) findViewById(R.id.zapiszWydatek);
         zapiszWydatek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setUserId(getIntent().getStringExtra("idUzytkownika"));
-                setUsername(getIntent().getStringExtra("nazwaUzytkownika"));
-
                 String category = ((Spinner) findViewById(R.id.kategorieWydatkow)).getSelectedItem().toString();
-                String selectedMonthName = ((Spinner) findViewById(R.id.miesiac)).getSelectedItem().toString();
-                Integer selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
-                String date = ((Spinner) findViewById(R.id.rok)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.dzien)).getSelectedItem().toString();
+  //              String selectedMonthName = ((Spinner) findViewById(R.id.miesiac)).getSelectedItem().toString();
+//                Integer selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
+//                String date = ((Spinner) findViewById(R.id.rok)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.dzien)).getSelectedItem().toString();
                 String cost = ((EditText) findViewById(R.id.kwotaWydatku)).getText().toString();
                 String description = ((EditText) findViewById(R.id.opisWydatku)).getText().toString();
 

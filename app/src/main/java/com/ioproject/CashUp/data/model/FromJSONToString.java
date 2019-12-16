@@ -25,7 +25,7 @@ public class FromJSONToString {
             String data = incomeArrray.getJSONObject(i).getString("data");
             String category = incomeArrray.getJSONObject(i).getString("category");
             String cost = incomeArrray.getJSONObject(i).getString("cost");
-            transaction = data+"\n"+category+"\n"+cost+" złoty";
+            transaction = data+"\n"+category+"\n"+cost+" zł";
             income.add(transaction);
         }
 
@@ -43,7 +43,7 @@ public class FromJSONToString {
             String data = outgoArrray.getJSONObject(i).getString("data");
             String category = outgoArrray.getJSONObject(i).getString("category");
             String cost = outgoArrray.getJSONObject(i).getString("cost");
-            transaction = data+"\n"+category+"\n-"+cost+" złoty";
+            transaction = data+"\n"+category+"\n-"+cost+" zł";
             income.add(transaction);
         }
 
