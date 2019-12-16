@@ -48,7 +48,9 @@ public class Registation extends AppCompatActivity implements AdapterView.OnItem
 
                        String add = DataBaseRequests.connect(DataBaseRequests.addNewUser(name, surname, email, login,
                                password, birthday));
-
+                       if(!add.equals("User with this login already exists\n")){
+                           logIn(v);
+                       }
                        System.out.println(add);
 
                    } catch (UnsupportedEncodingException ex){
