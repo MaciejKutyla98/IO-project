@@ -96,14 +96,27 @@ public class DataBaseRequests {
         return data;
     }
 
-    public static String addNewOutcome(String clientId, String category, String cost){
+    public static String addNewOutgo(String clientId, String category, String cost, String description){
         String data = "{" + "\"command\": " + "\"new_outgo\"";
         data += ", " + "\"id\": \"" + clientId + "\"";
         data += ", " + "\"category\": \"" + category + "\"";
-        data += ", " + "\"cost\": \"" + cost + "\"}";
+        data += ", " + "\"cost\": \"" + cost + "\"";
+        data += ", " + "\"description\": \"" + description + "\"";
         return data;
     }
 
-    
+    public static String addNewIncome(String clientId, String category, String cost, String description){
+        String data = "{" + "\"command\": " + "\"new_outgo\"";
+        data += ", " + "\"id\": \"" + clientId + "\"";
+        data += ", " + "\"category\": \"" + category + "\"";
+        data += ", " + "\"cost\": \"" + cost + "\"";
+        data += ", " + "\"description\": \"" + description + "\"";
+        return data;
+    }
 
+    public static String showAllTransactions(String userId){
+        String data = "{" + "\"command\": " + "\"show_all\"";
+        data += ", " + "\"id\": \"" + userId + "\"";
+        return data;
+    }
 }
