@@ -85,9 +85,7 @@ public class DataBaseRequests {
         data += ", " + "\"email\": \"" + email + "\"";
         data += ", " + "\"login\": \"" + login + "\"";
         data += ", " + "\"password\": \"" + password + "\"";
-        data += ", " + "\"birth_date\": \"" + birthday_date + "\"";
-        data += ", " + "\"sex\": \"" + "K" + "\"";
-        data += ", " + "\"reset_date\": \"" + "1" + "\"}";
+        data += ", " + "\"birth_date\": \"" + birthday_date + "\"}";
         return data;
     }
 
@@ -95,6 +93,14 @@ public class DataBaseRequests {
         String data = "{" + "\"command\": " + "\"check_user\"";
         data += ", " + "\"login\": \"" + login + "\"";
         data += ", " + "\"password\": \"" + password + "\"" + "}";
+        return data;
+    }
+
+    public static String addNewOutcome(String clientId, String category, String cost){
+        String data = "{" + "\"command\": " + "\"new_outgo\"";
+        data += ", " + "\"id\": \"" + clientId + "\"";
+        data += ", " + "\"category\": \"" + category + "\"";
+        data += ", " + "\"cost\": \"" + cost + "\"}";
         return data;
     }
 

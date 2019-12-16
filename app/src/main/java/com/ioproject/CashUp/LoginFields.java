@@ -73,7 +73,7 @@ public class LoginFields extends AppCompatActivity {
     }
 
     public void registration(View view) {
-        Intent intent_registration = new Intent(this, SignUp.class);
+        Intent intent_registration = new Intent(this, Register.class);
         startActivity(intent_registration);
     }
 
