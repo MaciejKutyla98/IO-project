@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".NewIncome"></activity>
-        <activity android:name=".NewOutcome" />
+        <activity android:name=".NewOutgo" />
         <activity android:name=".LoggedInUserView" />
         <activity
             android:name=".Registation"

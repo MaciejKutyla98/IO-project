@@ -9,11 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class NewOutcome extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
+public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
-    private Button saveOutcome;
+    private Button saveOutgo;
     private Button cancel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +20,7 @@ public class NewOutcome extends AppCompatActivity implements AdapterView.OnItemS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nowy_wydatek);
 
-        String [] options={"ODD NUMBER","EVEN NUMBER","PRIME NUMBER","MULTIPLE OF 3","EXACT NUMBER" };
+        String [] options={"EVEN NUMBER","PRIME NUMBER","MULTIPLE OF 3","EXACT NUMBER" };
 
         Spinner kategoria = findViewById(R.id.kategorieWydatkow);
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,options);
@@ -31,8 +30,8 @@ public class NewOutcome extends AppCompatActivity implements AdapterView.OnItemS
 
         dateChandler();
 
-        saveOutcome = (Button) findViewById(R.id.zapiszWydatek);
-        saveOutcome.setOnClickListener(new View.OnClickListener() {
+        saveOutgo = (Button) findViewById(R.id.zapiszWydatek);
+        saveOutgo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 backToHome(v);

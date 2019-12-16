@@ -60,7 +60,7 @@ public class LoggedInUserView extends AppCompatActivity {
 
 
     public void newBill(View view) {
-        Intent intent_newBill = new Intent(this, NewOutcome.class);
+        Intent intent_newBill = new Intent(this, NewOutgo.class);
         startActivity(intent_newBill);
     }
 
