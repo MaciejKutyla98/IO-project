@@ -8,11 +8,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
-public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
+public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
-    private Button saveOutgo;
-    private Button cancel;
+    private Button zapiszWydatek;
+    private Button anuluj;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,35 +22,14 @@ public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nowy_wydatek);
 
-        String [] options={"EVEN NUMBER","PRIME NUMBER","MULTIPLE OF 3","EXACT NUMBER" };
+        String [] options={"ODD NUMBER","EVEN NUMBER","PRIME NUMBER","MULTIPLE OF 3","EXACT NUMBER" };
 
         Spinner kategoria = findViewById(R.id.kategorieWydatkow);
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,options);
+        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,R.array.kategorieWydatkow, android.R.layout.simple_spinner_item);
         adapter4.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
         kategoria.setAdapter(adapter4);
         kategoria.setOnItemSelectedListener(this);
 
-        dateChandler();
-
-        saveOutgo = (Button) findViewById(R.id.zapiszWydatek);
-        saveOutgo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                backToHome(v);
-            }
-        });
-
-        cancel = (Button) findViewById(R.id.powrot);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                backToHome(v);
-            }
-        });
-
-    }
-
-    public void dateChandler(){
         Spinner days = findViewById(R.id.dzien);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
@@ -66,9 +47,32 @@ public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSel
         adapter3.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
         years.setAdapter(adapter3);
         years.setOnItemSelectedListener(this);
+
+
+        zapiszWydatek = (Button) findViewById(R.id.zapiszWydatek);
+        zapiszWydatek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveBill(v);
+            }
+        });
+
+        anuluj = (Button) findViewById(R.id.powrot);
+        anuluj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToHome(v);
+            }
+        });
+
     }
+
     public void backToHome(View view) {
-        Intent intent_newBill = new Intent(this, LoggedInUserView.class);
+        Intent intent_newBill = new Intent(this, Home.class);
+        startActivity(intent_newBill);
+    }
+    public void saveBill(View view) {
+        Intent intent_newBill = new Intent(this, Home.class);
         startActivity(intent_newBill);
     }
     @Override
