@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
+public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
     private Button zapiszWydatek;
     private Button anuluj;
@@ -68,11 +68,11 @@ public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItem
     }
 
     public void backToHome(View view) {
-        Intent intent_newBill = new Intent(this, Home.class);
+        Intent intent_newBill = new Intent(this, LoggedInUserView.class);
         startActivity(intent_newBill);
     }
     public void saveBill(View view) {
-        Intent intent_newBill = new Intent(this, Home.class);
+        Intent intent_newBill = new Intent(this, LoggedInUserView.class);
         startActivity(intent_newBill);
     }
     @Override

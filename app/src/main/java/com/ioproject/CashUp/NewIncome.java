@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class nowyDochod extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
+public class NewIncome extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
     private Button zapiszDochod;
     private Button anuluj;
@@ -91,12 +91,12 @@ public class nowyDochod extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     public void backToHome(View view) {
-        Intent intent_newBill = new Intent(this, Home.class);
+        Intent intent_newBill = new Intent(this, LoggedInUserView.class);
         startActivity(intent_newBill);
     }
 
     public void saveIncome(View view) {
-        Intent intent_newBill = new Intent(this, Home.class);
+        Intent intent_newBill = new Intent(this, LoggedInUserView.class);
         startActivity(intent_newBill);
     }
     @Override
