@@ -8,12 +8,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
+public class NewOutcome extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
-    private Button zapiszWydatek;
-    private Button anuluj;
+    private Button saveOutcome;
+    private Button cancel;
 
 
     @Override
@@ -30,6 +29,27 @@ public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItem
         kategoria.setAdapter(adapter4);
         kategoria.setOnItemSelectedListener(this);
 
+        dateChandler();
+
+        saveOutcome = (Button) findViewById(R.id.zapiszWydatek);
+        saveOutcome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToHome(v);
+            }
+        });
+
+        cancel = (Button) findViewById(R.id.powrot);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToHome(v);
+            }
+        });
+
+    }
+
+    public void dateChandler(){
         Spinner days = findViewById(R.id.dzien);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
@@ -47,28 +67,9 @@ public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItem
         adapter3.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
         years.setAdapter(adapter3);
         years.setOnItemSelectedListener(this);
-
-
-        zapiszWydatek = (Button) findViewById(R.id.zapiszWydatek);
-        zapiszWydatek.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                backToHome(v);
-            }
-        });
-
-        anuluj = (Button) findViewById(R.id.powrot);
-        anuluj.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                backToHome(v);
-            }
-        });
-
     }
-
     public void backToHome(View view) {
-        Intent intent_newBill = new Intent(this, Home.class);
+        Intent intent_newBill = new Intent(this, LoggedInUserView.class);
         startActivity(intent_newBill);
     }
     @Override

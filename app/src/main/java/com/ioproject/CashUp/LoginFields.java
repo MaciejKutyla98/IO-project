@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
+import com.ioproject.CashUp.data.model.LoggedInUser;
 
 import java.io.IOException;
 
@@ -23,7 +24,6 @@ public class LoginFields extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in_screen);
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -33,6 +33,7 @@ public class LoginFields extends AppCompatActivity {
             public void onClick(View v) {
                 String username = ((EditText) findViewById(R.id.login)).getText().toString();
                 String password = ((EditText) findViewById(R.id.password)).getText().toString();
+                setLogin(username);
                 String result = null;
                 try {
                     result = DataBaseRequests.connect(DataBaseRequests.loginUser(username, password));
@@ -40,12 +41,13 @@ public class LoginFields extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if(result.equals("0")){
+                if(result.equals(new String("0"))){
                     Toast.makeText(getApplicationContext(), "błędne dane logowania", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(getApplicationContext(), username + " logowanie powiodło się", Toast.LENGTH_SHORT).show();
-                    home(v);
+                    LoggedInUser loggedInUser =  new LoggedInUser(result, username);
+                    home(v, loggedInUser);
                 }
             }
         });
@@ -75,9 +77,9 @@ public class LoginFields extends AppCompatActivity {
         startActivity(intent_registration);
     }
 
-    public void home(View view) {
-        Intent intent_home= new Intent(this, Home.class);
-        intent_home.putExtra("nazwaUzytkownika", this.login);
+    public void home(View view, LoggedInUser loggedInUser) {
+        Intent intent_home= new Intent(this, LoggedInUserView.class);
+        intent_home.putExtra("nazwaUzytkownika", loggedInUser.getDisplayName());
         startActivity(intent_home);
     }
 }

@@ -81,6 +81,7 @@ public class DataBaseRequests {
     public static String addNewUser (String name, String surname, String email, String login, String password, String birthday_date){
         String data = "{" + "\"command\": " + "\"add_new_user\"";
         data += ", " + "\"name\": \"" + name + "\"";
+        data += ", " + "\"surname\": \"" + surname + "\"";
         data += ", " + "\"email\": \"" + email + "\"";
         data += ", " + "\"login\": \"" + login + "\"";
         data += ", " + "\"password\": \"" + password + "\"";
