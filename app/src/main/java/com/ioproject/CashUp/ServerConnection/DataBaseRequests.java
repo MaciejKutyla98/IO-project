@@ -101,22 +101,22 @@ public class DataBaseRequests {
         data += ", " + "\"id\": \"" + clientId + "\"";
         data += ", " + "\"category\": \"" + category + "\"";
         data += ", " + "\"cost\": \"" + cost + "\"";
-        data += ", " + "\"description\": \"" + description + "\"";
+        data += ", " + "\"description\": \"" + description + "\"}";
         return data;
     }
 
     public static String addNewIncome(String clientId, String category, String cost, String description){
-        String data = "{" + "\"command\": " + "\"new_outgo\"";
+        String data = "{" + "\"command\": " + "\"new_income\"";
         data += ", " + "\"id\": \"" + clientId + "\"";
         data += ", " + "\"category\": \"" + category + "\"";
         data += ", " + "\"cost\": \"" + cost + "\"";
-        data += ", " + "\"description\": \"" + description + "\"";
+        data += ", " + "\"description\": \"" + description + "\"}";
         return data;
     }
 
     public static String showAllTransactions(String userId){
         String data = "{" + "\"command\": " + "\"show_all\"";
-        data += ", " + "\"id\": \"" + userId + "\"";
+        data += ", " + "\"id\": \"" + userId + "\"}";
         return data;
     }
 }

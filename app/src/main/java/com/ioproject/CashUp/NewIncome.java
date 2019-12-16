@@ -1,18 +1,22 @@
 package com.ioproject.CashUp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
+import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 
 public class NewIncome extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
@@ -20,7 +24,26 @@ public class NewIncome extends AppCompatActivity implements AdapterView.OnItemSe
     private Button anuluj;
     private Button dodajKategorieDochodu;
     private String kwotaDochodu;
+    private String userId;
+    private String username;
     private String nowaKategoriaDochodu;
+    private String [] months = new String[] {"Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesien", "Październik", "Listopad", "Grudzień"};
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 
 
     @Override
@@ -47,11 +70,50 @@ public class NewIncome extends AppCompatActivity implements AdapterView.OnItemSe
 //            }
 //        });
 
+
         Spinner kategoria = findViewById(R.id.kategorieDochodow);
         ArrayAdapter<String> adapter4 =  new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, kategorieDochodow);
         adapter4.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
         kategoria.setAdapter(adapter4);
         kategoria.setOnItemSelectedListener(this);
+
+        handleSpinners();
+
+        zapiszDochod = (Button) findViewById(R.id.zapiszDochód);
+        zapiszDochod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setUserId(getIntent().getStringExtra("idUzytkownika"));
+                setUsername(getIntent().getStringExtra("nazwaUzytkownika"));
+
+                String category = ((Spinner) findViewById(R.id.kategorieDochodow)).getSelectedItem().toString();
+                String selectedMonthName = ((Spinner) findViewById(R.id.miesiac)).getSelectedItem().toString();
+                Integer selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
+                String date = ((Spinner) findViewById(R.id.rok)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.dzien)).getSelectedItem().toString();
+                String cost = ((EditText) findViewById(R.id.kwotaDochodu)).getText().toString();
+                String description = ((EditText) findViewById(R.id.opisDochodu)).getText().toString();
+
+                try {
+                    DataBaseRequests.connect(DataBaseRequests.addNewIncome(userId,category,cost,description));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                saveIncome(v);
+            }
+        });
+
+        anuluj = (Button) findViewById(R.id.powrot2);
+        anuluj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToHome(v);
+            }
+        });
+
+    }
+
+    public void handleSpinners(){
 
         Spinner days = findViewById(R.id.dzien);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
@@ -71,32 +133,18 @@ public class NewIncome extends AppCompatActivity implements AdapterView.OnItemSe
         years.setAdapter(adapter3);
         years.setOnItemSelectedListener(this);
 
-
-        zapiszDochod = (Button) findViewById(R.id.zapiszDochód);
-        zapiszDochod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveIncome(v);
-            }
-        });
-
-        anuluj = (Button) findViewById(R.id.powrot2);
-        anuluj.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                backToHome(v);
-            }
-        });
-
     }
-
     public void backToHome(View view) {
         Intent intent_newBill = new Intent(this, LoggedInUserView.class);
+        intent_newBill.putExtra("nazwaUzytkownika", getUsername());
+        intent_newBill.putExtra("idUzytkownika", getUserId());
         startActivity(intent_newBill);
     }
 
     public void saveIncome(View view) {
         Intent intent_newBill = new Intent(this, LoggedInUserView.class);
+        intent_newBill.putExtra("nazwaUzytkownika", getUsername());
+        intent_newBill.putExtra("idUzytkownika", getUserId());
         startActivity(intent_newBill);
     }
     @Override

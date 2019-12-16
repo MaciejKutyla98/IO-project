@@ -1,20 +1,44 @@
 package com.ioproject.CashUp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
+
+import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
+
+import java.io.IOException;
+import java.util.Arrays;
 
 public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
     private Button zapiszWydatek;
     private Button anuluj;
+    private String userId;
+    private String username;
+    private String [] months = new String[] {"Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesien", "Październik", "Listopad", "Grudzień"};
 
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +60,7 @@ public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSel
         days.setAdapter(adapter);
         days.setOnItemSelectedListener(this);
 
-        Spinner months = findViewById(R.id.miesiac);
+        final Spinner months = findViewById(R.id.miesiac);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
         months.setAdapter(adapter2);
@@ -53,6 +77,22 @@ public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSel
         zapiszWydatek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setUserId(getIntent().getStringExtra("idUzytkownika"));
+                setUsername(getIntent().getStringExtra("nazwaUzytkownika"));
+
+                String category = ((Spinner) findViewById(R.id.kategorieWydatkow)).getSelectedItem().toString();
+                String selectedMonthName = ((Spinner) findViewById(R.id.miesiac)).getSelectedItem().toString();
+                Integer selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
+                String date = ((Spinner) findViewById(R.id.rok)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.dzien)).getSelectedItem().toString();
+                String cost = ((EditText) findViewById(R.id.kwotaWydatku)).getText().toString();
+                String description = ((EditText) findViewById(R.id.opisWydatku)).getText().toString();
+
+                try {
+                    DataBaseRequests.connect(DataBaseRequests.addNewOutgo(getUserId(),category,cost, description));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 saveBill(v);
             }
         });
@@ -69,12 +109,18 @@ public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSel
 
     public void backToHome(View view) {
         Intent intent_newBill = new Intent(this, LoggedInUserView.class);
+        intent_newBill.putExtra("nazwaUzytkownika", getUsername());
+        intent_newBill.putExtra("idUzytkownika", getUserId());
         startActivity(intent_newBill);
     }
+
     public void saveBill(View view) {
         Intent intent_newBill = new Intent(this, LoggedInUserView.class);
+        intent_newBill.putExtra("nazwaUzytkownika", getUsername());
+        intent_newBill.putExtra("idUzytkownika", getUserId());
         startActivity(intent_newBill);
     }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
         // String text = parent.getItemAtPosition(position).toString();

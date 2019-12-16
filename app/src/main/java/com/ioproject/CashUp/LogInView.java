@@ -82,6 +82,7 @@ public class LogInView extends AppCompatActivity {
     public void home(View view, LoggedInUser loggedInUser) {
         Intent intent_home= new Intent(this, LoggedInUserView.class);
         intent_home.putExtra("nazwaUzytkownika", loggedInUser.getDisplayName());
+        intent_home.putExtra("idUzytkownika", loggedInUser.getUserId());
         startActivity(intent_home);
     }
 }

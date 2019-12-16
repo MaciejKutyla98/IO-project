@@ -37,7 +37,7 @@ public class Registation extends AppCompatActivity implements AdapterView.OnItem
                if(termsAndCond.isChecked()){
                    String name = ((EditText) findViewById(R.id.name)).getText().toString();
                    String surname = ((EditText) findViewById(R.id.surname)).getText().toString();
-                   String email = ((EditText) findViewById(R.id.name)).getText().toString();
+                   String email = ((EditText) findViewById(R.id.email)).getText().toString();
                    String login = ((EditText) findViewById(R.id.login_reg)).getText().toString();
                    String password = ((EditText) findViewById(R.id.password_registration)).getText().toString();
                    String selectedMonthName = ((Spinner) findViewById(R.id.spinner_months)).getSelectedItem().toString();
