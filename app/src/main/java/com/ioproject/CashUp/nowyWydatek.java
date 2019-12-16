@@ -25,7 +25,7 @@ public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItem
         String [] options={"ODD NUMBER","EVEN NUMBER","PRIME NUMBER","MULTIPLE OF 3","EXACT NUMBER" };
 
         Spinner kategoria = findViewById(R.id.kategorieWydatkow);
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,options);
+        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,R.array.kategorieWydatkow, android.R.layout.simple_spinner_item);
         adapter4.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
         kategoria.setAdapter(adapter4);
         kategoria.setOnItemSelectedListener(this);
@@ -53,7 +53,7 @@ public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItem
         zapiszWydatek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToHome(v);
+                saveBill(v);
             }
         });
 
@@ -68,6 +68,10 @@ public class nowyWydatek extends AppCompatActivity implements AdapterView.OnItem
     }
 
     public void backToHome(View view) {
+        Intent intent_newBill = new Intent(this, Home.class);
+        startActivity(intent_newBill);
+    }
+    public void saveBill(View view) {
         Intent intent_newBill = new Intent(this, Home.class);
         startActivity(intent_newBill);
     }

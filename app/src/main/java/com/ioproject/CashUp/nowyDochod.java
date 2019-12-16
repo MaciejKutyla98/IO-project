@@ -7,13 +7,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class nowyDochod extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
     private Button zapiszDochod;
     private Button anuluj;
+    private Button dodajKategorieDochodu;
+    private String kwotaDochodu;
+    private String nowaKategoriaDochodu;
 
 
     @Override
@@ -22,10 +29,26 @@ public class nowyDochod extends AppCompatActivity implements AdapterView.OnItemS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nowy_dochod);
 
-        String [] options={"ODD NUMBER","EVEN NUMBER","PRIME NUMBER","MULTIPLE OF 3","EXACT NUMBER" };
+        List<String> kategorieDochodow = new ArrayList<String>();
+        kategorieDochodow.add("Praca");
+        kategorieDochodow.add("Praca dorywcza");
+        kategorieDochodow.add("Stypendium");
+        kategorieDochodow.add("Rodzice");
+        kategorieDochodow.add("Dodatkowo");
+
+
+//        dodajKategorieDochodu = (Button) findViewById(R.id.dodajKatygorieD);
+//        dodajKategorieDochodu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                EditText KategoriaDochodu = (EditText) findViewById(R.id.nowaKategoriaDochodu);
+//                setNowaKategoriaDochodu(KategoriaDochodu.getText().toString());
+//                home(v);
+//            }
+//        });
 
         Spinner kategoria = findViewById(R.id.kategorieDochodow);
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,options);
+        ArrayAdapter<String> adapter4 =  new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, kategorieDochodow);
         adapter4.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
         kategoria.setAdapter(adapter4);
         kategoria.setOnItemSelectedListener(this);
@@ -53,7 +76,7 @@ public class nowyDochod extends AppCompatActivity implements AdapterView.OnItemS
         zapiszDochod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToHome(v);
+                saveIncome(v);
             }
         });
 
@@ -71,6 +94,11 @@ public class nowyDochod extends AppCompatActivity implements AdapterView.OnItemS
         Intent intent_newBill = new Intent(this, Home.class);
         startActivity(intent_newBill);
     }
+
+    public void saveIncome(View view) {
+        Intent intent_newBill = new Intent(this, Home.class);
+        startActivity(intent_newBill);
+    }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
         // String text = parent.getItemAtPosition(position).toString();
@@ -80,4 +108,21 @@ public class nowyDochod extends AppCompatActivity implements AdapterView.OnItemS
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
+
+    public String getKwotaDochodu() {
+        return kwotaDochodu;
+    }
+
+    public void setKwotaDochodu(String kwotaDochodu) {
+        this.kwotaDochodu = kwotaDochodu;
+    }
+
+    public String getNowaKategoriaDochodu() {
+        return nowaKategoriaDochodu;
+    }
+
+    public void setNowaKategoriaDochodu(String nowaKategoriaDochodu) {
+        this.nowaKategoriaDochodu = nowaKategoriaDochodu;
+    }
+
 }
