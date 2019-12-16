@@ -93,7 +93,7 @@ public class DataBaseRequests {
     public static String loginUser (String login, String password){
         String data = "{" + "\"command\": " + "\"check_user\"";
         data += ", " + "\"login\": \"" + login + "\"";
-        data += ", " + "\"password\": \"" + password + "\"" + "\"}";
+        data += ", " + "\"password\": \"" + password + "\"" + "}";
         return data;
     }
 
