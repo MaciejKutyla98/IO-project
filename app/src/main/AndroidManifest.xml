@@ -16,9 +16,9 @@
         <activity android:name=".NewOutcome" />
         <activity android:name=".LoggedInUserView" />
         <activity
-            android:name=".Register"
+            android:name=".Registation"
             android:label="@string/title_activity_sign_up" />
-        <activity android:name=".LoginFields">
+        <activity android:name=".LogInView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

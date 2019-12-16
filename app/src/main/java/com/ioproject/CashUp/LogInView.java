@@ -14,7 +14,7 @@ import com.ioproject.CashUp.data.model.LoggedInUser;
 
 import java.io.IOException;
 
-public class LoginFields extends AppCompatActivity {
+public class LogInView extends AppCompatActivity {
     private String login;
     private String password;
     private Button signInButton;
@@ -73,7 +73,7 @@ public class LoginFields extends AppCompatActivity {
     }
 
     public void registration(View view) {
-        Intent intent_registration = new Intent(this, Register.class);
+        Intent intent_registration = new Intent(this, Registation.class);
         startActivity(intent_registration);
     }
 

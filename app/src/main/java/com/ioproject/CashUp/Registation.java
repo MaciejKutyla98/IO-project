@@ -19,7 +19,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 
-public class Register extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Registation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private String [] months = new String[] {"Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesien", "Październik", "Listopad", "Grudzień"};
 
@@ -67,7 +67,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     public void registration(View view) {
-        Intent intent_registration = new Intent(this, Register.class);
+        Intent intent_registration = new Intent(this, Registation.class);
         startActivity(intent_registration);
     }
     public void handleSpinners(){
