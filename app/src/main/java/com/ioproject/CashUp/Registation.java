@@ -35,8 +35,6 @@ public class Registation extends AppCompatActivity implements AdapterView.OnItem
            @Override
            public void onClick(View v){
                if(termsAndCond.isChecked()){
-                   System.out.println("elo");
-
                    String name = ((EditText) findViewById(R.id.name)).getText().toString();
                    String surname = ((EditText) findViewById(R.id.surname)).getText().toString();
                    String email = ((EditText) findViewById(R.id.name)).getText().toString();
@@ -50,6 +48,7 @@ public class Registation extends AppCompatActivity implements AdapterView.OnItem
 
                        String add = DataBaseRequests.connect(DataBaseRequests.addNewUser(name, surname, email, login,
                                password, birthday));
+
                        System.out.println(add);
 
                    } catch (UnsupportedEncodingException ex){
@@ -57,7 +56,6 @@ public class Registation extends AppCompatActivity implements AdapterView.OnItem
                    } catch (IOException e) {
                        e.printStackTrace();
                    }
-
                }
                else {
                    Toast.makeText(getApplicationContext(), "Nie zaakceptowałeś regulaminu", Toast.LENGTH_SHORT).show();
@@ -70,6 +68,12 @@ public class Registation extends AppCompatActivity implements AdapterView.OnItem
         Intent intent_registration = new Intent(this, Registation.class);
         startActivity(intent_registration);
     }
+
+    public void logIn(View view) {
+        Intent intent_login = new Intent(this, LogInView.class);
+        startActivity(intent_login);
+    }
+
     public void handleSpinners(){
         Spinner days = findViewById(R.id.spinner_day);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);

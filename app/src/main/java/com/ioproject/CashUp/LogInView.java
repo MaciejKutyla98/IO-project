@@ -37,11 +37,13 @@ public class LogInView extends AppCompatActivity {
                 String result = null;
                 try {
                     result = DataBaseRequests.connect(DataBaseRequests.loginUser(username, password));
+                    result = result.trim();
                     System.out.println(result);
+                    System.out.println(result.length());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if(result.equals(new String("0"))){
+                if(result.equals("0")){
                     Toast.makeText(getApplicationContext(), "błędne dane logowania", Toast.LENGTH_SHORT).show();
                 }
                 else{
