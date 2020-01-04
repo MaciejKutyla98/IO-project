@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
+import com.ioproject.CashUp.ServerConnection.Repository;
 
 import java.io.IOException;
 
@@ -85,7 +85,7 @@ public class NewOutgo extends AppCompatActivity implements AdapterView.OnItemSel
                 String description = ((EditText) findViewById(R.id.opisWydatku)).getText().toString();
 
                 try {
-                    DataBaseRequests.connect(DataBaseRequests.addNewOutgo(getUserId(),category,cost, description));
+                    Repository.addNewOutgo(getUserId(),category,cost, description);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

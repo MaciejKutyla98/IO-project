@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
+import com.ioproject.CashUp.ServerConnection.Repository;
 import com.ioproject.CashUp.data.model.FromJSONToString;
 
 import org.json.JSONException;
@@ -63,7 +63,7 @@ public class LoggedInUserView extends AppCompatActivity {
         String podliczenieZBazy = null;
         String transactions = null;
         try {
-            transactions = DataBaseRequests.connect(DataBaseRequests.showAllTransactions(userId));
+            transactions = Repository.showAllTransactions(userId);
             FromJSONToString fromJSONToString = new FromJSONToString(transactions);
             dochody = fromJSONToString.fromJSONTOStringIncome();
             wydatki = fromJSONToString.fromJSONTOStringOutgo();

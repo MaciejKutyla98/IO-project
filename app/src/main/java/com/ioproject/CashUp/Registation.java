@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
+import com.ioproject.CashUp.ServerConnection.Repository;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -46,8 +46,8 @@ public class Registation extends AppCompatActivity implements AdapterView.OnItem
                    String birthday = ((Spinner) findViewById(R.id.spinner_years)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.spinner_day)).getSelectedItem().toString();
                    try {
 
-                       String add = DataBaseRequests.connect(DataBaseRequests.addNewUser(name, surname, email, login,
-                               password, birthday));
+                       String add = Repository.addNewUser(name, surname, email, login,
+                               password, birthday);
                        if(!add.equals("User with this login already exists\n")){
                            logIn(v);
                        }

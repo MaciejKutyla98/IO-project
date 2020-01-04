@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
+import com.ioproject.CashUp.ServerConnection.Repository;
 import com.ioproject.CashUp.data.model.LoggedInUser;
 
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class LogInView extends AppCompatActivity {
                 setLogin(username);
                 String result = null;
                 try {
-                    result = DataBaseRequests.connect(DataBaseRequests.loginUser(username, password));
+                    result = Repository.loginUser(username, password);
                     result = result.trim();
                     System.out.println(result);
                     System.out.println(result.length());

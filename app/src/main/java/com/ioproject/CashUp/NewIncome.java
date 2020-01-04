@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.ioproject.CashUp.ServerConnection.DataBaseRequests;
+import com.ioproject.CashUp.ServerConnection.Repository;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -93,7 +93,7 @@ public class NewIncome extends AppCompatActivity implements AdapterView.OnItemSe
                 String description = ((EditText) findViewById(R.id.opisDochodu)).getText().toString();
 
                 try {
-                    DataBaseRequests.connect(DataBaseRequests.addNewIncome(userId,category,cost,description));
+                    Repository.addNewIncome(userId,category,cost,description);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
