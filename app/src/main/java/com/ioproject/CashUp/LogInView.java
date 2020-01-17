@@ -18,6 +18,7 @@ public class LogInView extends AppCompatActivity {
     private String login;
     private String password;
     private Button signInButton;
+    private Button test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,14 @@ public class LogInView extends AppCompatActivity {
         setContentView(R.layout.sign_in_screen);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        test = (Button) findViewById(R.id.testowyprzycisk);
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                testdlamacka(view);
+            }
+        });
 
         signInButton = (Button) findViewById(R.id.sign_in);
         signInButton.setOnClickListener(new View.OnClickListener() {
@@ -84,5 +93,10 @@ public class LogInView extends AppCompatActivity {
         intent_home.putExtra("nazwaUzytkownika", loggedInUser.getDisplayName());
         intent_home.putExtra("idUzytkownika", loggedInUser.getUserId());
         startActivity(intent_home);
+    }
+
+    public void testdlamacka(View view) {
+        Intent intent_test = new Intent(this, NewGroupIncome.class);
+        startActivity(intent_test);
     }
 }
