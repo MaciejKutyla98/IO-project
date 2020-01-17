@@ -121,10 +121,11 @@ public class IndividualHomeView extends AppCompatActivity {
                 y2=touchevent.getY();
                 if(x2 < x1){
                     Intent i = new Intent(this, GroupHome.class);
+                    i.putExtra("nazwaUzytkownika", username);
+                    i.putExtra("idUzytkownika", userId);
                     startActivity(i);
                 }
                 break;
-
         }
         return false;
     }
