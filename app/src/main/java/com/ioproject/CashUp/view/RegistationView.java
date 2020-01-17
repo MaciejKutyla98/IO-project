@@ -26,6 +26,7 @@ public class RegistationView extends AppCompatActivity implements AdapterView.On
     private String email;
     private String login;
     private String password;
+    private String confirmPassword;
     private Integer selectedMonthNumber;
     private Button signUpButton;
     private String [] months = new String[] {"Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesien", "Październik", "Listopad", "Grudzień"};
@@ -47,20 +48,34 @@ public class RegistationView extends AppCompatActivity implements AdapterView.On
                    email = ((EditText) findViewById(R.id.email)).getText().toString();
                    login = ((EditText) findViewById(R.id.login_reg)).getText().toString();
                    password = ((EditText) findViewById(R.id.password_registration)).getText().toString();
+                   confirmPassword = ((EditText) findViewById(R.id.password_registration2)).getText().toString();
                    String selectedMonthName = ((Spinner) findViewById(R.id.spinner_months)).getSelectedItem().toString();
                    selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
 
                    String birthday = ((Spinner) findViewById(R.id.spinner_years)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.spinner_day)).getSelectedItem().toString();
                    try {
                        if(checkNameSurname()){
-                           String add = Repository.addNewUser(name, surname, email, login,
-                                   password, birthday);
-                           if(!add.equals("User with this login already exists".trim())){
-                               Toast.makeText(getApplicationContext(), "poprawna rejestracja", Toast.LENGTH_SHORT).show();
-                               logIn(v);
+                           if(checkEmail()){
+                               if(checkPassword()) {
+                                   if(password.equals(confirmPassword)) {
+                                       String add = Repository.addNewUser(name, surname, email, login,
+                                               password, birthday);
+                                       if (!add.equals("User with this login already exists".trim())) {
+                                           Toast.makeText(getApplicationContext(), "poprawna rejestracja", Toast.LENGTH_SHORT).show();
+                                           logIn(v);
+                                       } else {
+                                           Toast.makeText(getApplicationContext(), "użytkownik o takim loginie lub mailu już istnieje", Toast.LENGTH_SHORT).show();
+                                       }
+                                   }else{
+                                       Toast.makeText(getApplicationContext(), "podane hasła się od siebie różnią", Toast.LENGTH_SHORT).show();
+                                   }
+                               }
+                               else{
+                                   Toast.makeText(getApplicationContext(), "hasło powinno być dłuższe niż 5 znaków i zawierać cyfrę", Toast.LENGTH_SHORT).show();
+                               }
                            }
                            else{
-                               Toast.makeText(getApplicationContext(), "użytkownik o takim loginie lub mailu już istnieje", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(getApplicationContext(), "niepoprawny format email", Toast.LENGTH_SHORT).show();
                            }
                        }
                        else {
@@ -128,6 +143,28 @@ public class RegistationView extends AppCompatActivity implements AdapterView.On
         if(flag == 1)
             return false;
         return true;
+    }
+
+    private Boolean checkPassword(){
+        if(password.length() < 6)
+            return false;
+        int flag = 0;
+        for(int i = 0; i< password.length(); i++) {
+            int ascii = (int) password.charAt(i);
+            if (ascii > 47 && ascii < 58) {
+                flag = 1;
+            }
+        }
+        if(flag == 0)
+            return false;
+        return true;
+    }
+
+    private Boolean checkEmail(){
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
     }
 
     @Override

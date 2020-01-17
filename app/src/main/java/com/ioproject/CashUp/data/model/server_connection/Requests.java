@@ -2,6 +2,8 @@ package com.ioproject.CashUp.data.model.server_connection;
 
 //class is handling converting app requests to JSONs matching with REST API shared by server
 
+import java.util.ArrayList;
+
 public class Requests {
     public static String addNewUser (String name, String surname, String email, String login, String password, String birthday_date){
         String data = "{" + "\"command\": " + "\"add_new_user\"";
@@ -42,6 +44,44 @@ public class Requests {
     public static String showAllTransactions(String userId){
         String data = "{" + "\"command\": " + "\"show_all\"";
         data += ", " + "\"id\": \"" + userId + "\"}";
+        return data;
+    }
+
+    public static String addNewGroup(String name, String description, ArrayList<String> members){
+        StringBuilder membersString = new StringBuilder();
+        for(String i: members){
+            if(members.get(0) != i){
+                membersString.append(", ");
+            }
+            membersString.append("\"").append(i).append("\"");
+        }
+        String data = "{" + "\"command\": " + "\"group_add\"";
+        data += ", " + "\"group_name\": \"" + name + "\"";
+        data += ", " + "\"group_description\": \"" + description + "\"";
+        data += ", " + "\"group_members\": [\"" + membersString + "\"]}";
+        return data;
+    }
+
+    public static String addNewGroupOutgo(String groupId, String price, String category, String description, String payer){
+        String data = "{" + "\"command\": " + "\"new_group_payment\"";
+        data += ", " + "\"group_id\": \"" + groupId + "\"";
+        data += ", " + "\"quota\": " + price;
+        data += ", " + "\"category\": \"" + category + "\"";
+        data += ", " + "\"description\": \"" + description + "\"";
+        data += ", " + "\"person_pay\": \"" + payer + "\"}";
+        return data;
+    }
+
+    public static String showUserBalance(String login, String groudId){
+        String data = "{" + "\"command\": " + "\"show_balance\"";
+        data += ", " + "\"login\": \"" + login + "\"";
+        data += ", " + "\"group_id\": " + groudId + "}";
+        return data;
+    }
+
+    public static String getAllUserGroups(String login){
+        String data = "{" + "\"command\": " + "\"get_groups\"";
+        data += ", " + "\"login\": \"" + login + "\"}";
         return data;
     }
 }

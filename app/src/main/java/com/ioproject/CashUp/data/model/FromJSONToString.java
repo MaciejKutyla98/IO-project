@@ -49,4 +49,24 @@ public class FromJSONToString {
         Integer balanceSheet = json.getInt("summary");
         return balanceSheet;
     }
+
+    public ArrayList<String> fromJSONToStringGroupBalance() throws JSONException {
+        ArrayList<String> groupBalance = new ArrayList<>();
+        JSONArray balance = json.getJSONArray("balance");
+        for(int i = 0; i < balance.length(); i++){
+            String userWithBalance;
+            userWithBalance = balance.getJSONArray(i).getString(0) + ": " + balance.getJSONArray(i).getInt(1);
+            groupBalance.add(userWithBalance);
+        }
+        return groupBalance;
+    }
+
+    public ArrayList<String> fromJSONToStringGetAllUserGroups() throws JSONException {
+        ArrayList<String> allGroups = new ArrayList<>();
+        JSONArray groups = json.getJSONArray("groups");
+        for(int i = 0; i< json.length(); i++){
+            allGroups.add(groups.getString(i));
+        }
+        return allGroups;
+    }
 }
