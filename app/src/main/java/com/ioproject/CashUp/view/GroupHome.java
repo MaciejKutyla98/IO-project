@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.ioproject.CashUp.NewGroup;
 import com.ioproject.CashUp.R;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class GroupHome extends AppCompatActivity implements AdapterView.OnItemSe
 
     float x1,x2,y1,y2;
     private Button goToGroups;
+    private Button newGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,14 @@ public class GroupHome extends AppCompatActivity implements AdapterView.OnItemSe
             @Override
             public void onClick(View v) {
                 goToOtherGroup(v);
+            }
+        });
+
+        newGroup = (Button) findViewById(R.id.newGroup);
+        newGroup.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                createNewGroup(v);
             }
         });
     }
@@ -73,5 +83,10 @@ public class GroupHome extends AppCompatActivity implements AdapterView.OnItemSe
     public void goToOtherGroup(View view) {
         Intent new_groups = new Intent(this, GroupBilans.class);
         startActivity(new_groups);
+    }
+
+    public void createNewGroup(View view) {
+        Intent new_group = new Intent(this, NewGroup.class);
+        startActivity(new_group);
     }
 }
