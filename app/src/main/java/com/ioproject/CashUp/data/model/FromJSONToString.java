@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+//conversion from JSON shared by server with REST API
+
 public class FromJSONToString {
     private JSONObject json;
 
@@ -13,30 +15,24 @@ public class FromJSONToString {
         this.json = new JSONObject(json);
     }
 
-
     public ArrayList<String> fromJSONTOStringIncome() throws JSONException {
         ArrayList<String> income = new ArrayList<>();
-
         JSONArray incomeArrray = json.getJSONArray("income");
-
         for (int i = 0; i < incomeArrray.length(); i++)
         {
-            String transaction = new String();
+            String transaction;
             String data = incomeArrray.getJSONObject(i).getString("data");
             String category = incomeArrray.getJSONObject(i).getString("category");
             String cost = incomeArrray.getJSONObject(i).getString("cost");
             transaction = data+"\n"+category+"\n"+cost+" zł";
             income.add(transaction);
         }
-
         return income;
     }
 
     public ArrayList<String> fromJSONTOStringOutgo() throws JSONException {
         ArrayList<String> income = new ArrayList<>();
-
         JSONArray outgoArrray = json.getJSONArray("outgo");
-
         for (int i = 0; i < outgoArrray.length(); i++)
         {
             String transaction = new String();
@@ -46,7 +42,6 @@ public class FromJSONToString {
             transaction = data+"\n"+category+"\n-"+cost+" zł";
             income.add(transaction);
         }
-
         return income;
     }
 
@@ -54,6 +49,4 @@ public class FromJSONToString {
         Integer balanceSheet = json.getInt("summary");
         return balanceSheet;
     }
-
-
 }

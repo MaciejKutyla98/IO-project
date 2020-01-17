@@ -7,6 +7,8 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
 
+//Class handling server and database connection at any address
+
 public class DatabaseConnection {
     private URL urlAddress = null;
     private URLConnection connection = null;
@@ -33,7 +35,6 @@ public class DatabaseConnection {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void connect(String urlAddress) throws ProtocolException {

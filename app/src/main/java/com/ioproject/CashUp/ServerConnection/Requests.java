@@ -1,5 +1,7 @@
 package com.ioproject.CashUp.ServerConnection;
 
+//class is handling converting app requests to JSONs matching with REST API shared by server
+
 public class Requests {
     public static String addNewUser (String name, String surname, String email, String login, String password, String birthday_date){
         String data = "{" + "\"command\": " + "\"add_new_user\"";

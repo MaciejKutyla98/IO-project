@@ -2,6 +2,9 @@ package com.ioproject.CashUp.ServerConnection;
 
 import java.io.IOException;
 
+//class Repository - the only way to get to data from database, another actions like handling server connection etc are placed
+// in separated classes to make code more clear
+
 public class Repository {
     private static RequestsHandler requestsHandler = new RequestsHandler();
     private static String result;

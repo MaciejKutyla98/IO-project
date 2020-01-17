@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
+//class handles requests sending and receiving answers
+
 public class RequestsHandler {
     private DatabaseConnection databaseConnection;
 

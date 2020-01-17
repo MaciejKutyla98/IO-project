@@ -76,31 +76,11 @@ public class LoggedInUserView extends AppCompatActivity {
         
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,wydatki);
         listViewWydatki.setAdapter(arrayAdapter);
-        //tutaj musimy w formie Stringa najlepiej Kategoria + ":    " + 'suma' i dodawać po porstu addem do bazy
-//        wydatki.add("elo");
-//        wydatki.add("my");
-//        wydatki.add("tego");
-//        wydatki.add("kurwa");
-//        wydatki.add("nie");
-//        wydatki.add("zdamy");
-//        wydatki.add("elo");
-//        wydatki.add("elo");
-
         listViewDochody = (ListView)findViewById(R.id.listviewDochody);
 
 
         ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_list_item_1,dochody);
         listViewDochody.setAdapter(arrayAdapter2);
-//        dochody.add("elo");
-//        dochody.add("my");
-//        dochody.add("tego");
-//        dochody.add("kurwa");
-//        dochody.add("nie");
-//        dochody.add("zdamy");
-//        dochody.add("elo");
-//        dochody.add("elo");
-        /// tutaj wstawić funkcję która liczy sumę wydatków i dochodów i w poostaci stringa przypisujemy to do podliczenieZBazy
-//        String podliczenieZBazy = "51,72 zł";
         ((TextView) findViewById(R.id.bilansBazy)).setText(podliczenieZBazy);
 
         choice = (Button) findViewById(R.id.wybor);
