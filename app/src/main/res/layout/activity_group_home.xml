@@ -10,7 +10,7 @@
         android:id="@+id/background"
         android:layout_width="420dp"
         android:layout_height="60dp"
-        android:background="#D32F2F"
+        android:background="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,7 +27,7 @@
         android:padding="@dimen/appbar_padding"
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-        android:textColor="@android:color/white"
+        android:textColor="#66ffcc"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
@@ -52,7 +52,7 @@
         android:layout_height="77dp"
         android:text="Wybierz grupę, która Cię interesuje:"
         android:textAlignment="center"
-        android:textColor="#D32F2F"
+        android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,19 +65,23 @@
         android:id="@+id/goToGroup"
         android:layout_width="201dp"
         android:layout_height="85dp"
+        android:background="@android:color/black"
         android:text="Przejdź to wybranej grupy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.809"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background"
-        app:layout_constraintVertical_bias="0.538" />
+        app:layout_constraintVertical_bias="0.538"
+        tools:textColor="#66ffcc" />
 
     <Button
         android:id="@+id/newGroup"
         android:layout_width="201dp"
         android:layout_height="85dp"
+        android:background="@android:color/black"
         android:text="Dodaj nową grupę"
+        android:textColor="#66ffcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.809"
