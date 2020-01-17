@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ioproject.CashUp">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,13 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.NewIncomeView"></activity>
-        <activity android:name=".view.NewOutgoView" />
-        <activity android:name=".view.IndividualHomeView" />
+        <activity android:name=".NewGroupIncome"></activity>
+        <activity android:name=".NewIncome" />
+        <activity android:name=".NewOutgo" />
+        <activity android:name=".LoggedInUserView" />
+        <activity android:name=".NewGroupIncome"
+            tools:ignore="DuplicateActivity" />
+        <activity android:name=".UsersList" />
+        <activity android:name=".ExampleAdapter" />
         <activity
-            android:name=".view.RegistationView"
+            android:name=".Registation"
             android:label="@string/title_activity_sign_up" />
-        <activity android:name=".view.LogInView">
+        <activity android:name=".LogInView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
