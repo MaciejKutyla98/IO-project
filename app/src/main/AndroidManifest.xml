@@ -13,24 +13,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewGroupIncome"></activity>
-        <activity android:name=".NewIncome" />
-        <activity android:name=".NewOutgo" />
-        <activity android:name=".LoggedInUserView" />
-        <activity android:name=".NewGroupIncome"
-            tools:ignore="DuplicateActivity" />
-        <activity android:name=".UsersList" />
-        <activity android:name=".ExampleAdapter" />
+        <activity android:name=".view.NewIncomeView"></activity>
+        <activity android:name=".view.NewOutgoView" />
+        <activity android:name=".view.IndividualHomeView" />
         <activity
-            android:name=".Registation"
+            android:name=".view.RegistationView"
             android:label="@string/title_activity_sign_up" />
-        <activity android:name=".LogInView">
+        <activity android:name=".view.LogInView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UsersList" />
+        <activity android:name=".NewGroupIncome" />
+        <activity android:name=".ExampleAdapter" />
     </application>
 
 </manifest>
