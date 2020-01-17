@@ -1,6 +1,7 @@
 package com.ioproject.CashUp.data.model.server_connection;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 //class Repository - the only way to get to data from database, another actions like handling server connection etc are placed
 // in separated classes to make code more clear
@@ -45,6 +46,34 @@ public class Repository {
 
     public static String showAllTransactions(String userId) throws IOException {
         setResult(requestsHandler.sendRequestAndGetResponse("https://cash-success.appspot.com", Requests.showAllTransactions(userId)));
+        return result;
+    }
+
+    public static void addNewGroup(String name, String description, ArrayList<String> members) throws IOException {
+        setResult(requestsHandler.sendRequestAndGetResponse("https://cash-success.appspot.com", Requests.addNewGroup(name, description, members)));
+    }
+
+    public static void addNewGroupOutgo(String groupId, String price, String category, String description, String payer) throws IOException {
+        setResult(requestsHandler.sendRequestAndGetResponse("https://cash-success.appspot.com", Requests.addNewGroupOutgo(groupId, price, category, description, payer)));
+    }
+
+    public static String showUserBalance(String login, String groudId) throws IOException {
+        setResult(requestsHandler.sendRequestAndGetResponse("https://cash-success.appspot.com", Requests.showUserBalance(login, groudId)));
+        return result;
+    }
+
+    public static String getAllUserGroups(String login) throws IOException {
+        setResult(requestsHandler.sendRequestAndGetResponse("https://cash-success.appspot.com", Requests.getAllUserGroups(login)));
+        return result;
+    }
+
+    public static String doesUserExist(String login) throws IOException {
+        setResult(requestsHandler.sendRequestAndGetResponse("https://cash-success.appspot.com", Requests.doesUserExist(login)));
+        return result;
+    }
+
+    public static String showUserHistory(String login, String groudId) throws IOException {
+        setResult(requestsHandler.sendRequestAndGetResponse("https://cash-success.appspot.com", Requests.showUserHistory(login, groudId)));
         return result;
     }
 }

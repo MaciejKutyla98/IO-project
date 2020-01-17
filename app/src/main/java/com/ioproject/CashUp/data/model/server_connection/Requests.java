@@ -84,4 +84,17 @@ public class Requests {
         data += ", " + "\"login\": \"" + login + "\"}";
         return data;
     }
+
+    public static String doesUserExist(String login){
+        String data = "{" + "\"command\": " + "\"user_exist\"";
+        data += ", " + "\"login\": \"" + login + "\"}";
+        return data;
+    }
+
+    public static String showUserHistory(String login, String groudId){
+        String data = "{" + "\"command\": " + "\"show_history\"";
+        data += ", " + "\"login\": \"" + login + "\"";
+        data += ", " + "\"group_id\": " + groudId + "}";
+        return data;
+    }
 }
