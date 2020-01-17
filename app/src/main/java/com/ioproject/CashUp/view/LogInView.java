@@ -70,4 +70,5 @@ public class LogInView extends AppCompatActivity {
             home(v, loggedInUser);
         }
     }
+
 }

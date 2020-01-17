@@ -3,6 +3,7 @@ package com.ioproject.CashUp.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,6 +32,7 @@ public class IndividualHomeView extends AppCompatActivity {
     ListView listViewIncome;
     private ArrayList<String> outgo = new ArrayList<>();
     private ArrayList<String> income = new ArrayList<>();
+    float x1,x2,y1,y2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,4 +110,23 @@ public class IndividualHomeView extends AppCompatActivity {
         intent_newIncome.putExtra("idUzytkownika", userId);
         startActivity(intent_newIncome);
     }
+    public boolean onTouchEvent(MotionEvent touchevent){
+        switch (touchevent.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1=touchevent.getX();
+                y1=touchevent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2=touchevent.getX();
+                y2=touchevent.getY();
+                if(x2 < x1){
+                    Intent i = new Intent(this, GroupHome.class);
+                    startActivity(i);
+                }
+                break;
+
+        }
+        return false;
+    }
+
 }
