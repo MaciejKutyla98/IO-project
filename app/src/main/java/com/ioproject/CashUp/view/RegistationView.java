@@ -103,7 +103,7 @@ public class RegistationView extends AppCompatActivity implements AdapterView.On
 
         Spinner years = findViewById(R.id.spinner_years);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
+        adapter3.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
         years.setAdapter(adapter3);
         years.setOnItemSelectedListener(this);
     }
