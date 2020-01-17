@@ -1,4 +1,4 @@
-package com.ioproject.CashUp.ServerConnection;
+package com.ioproject.CashUp.data.model.server_connection;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;

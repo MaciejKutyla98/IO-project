@@ -1,4 +1,4 @@
-package com.ioproject.CashUp;
+package com.ioproject.CashUp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,15 +12,22 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.ioproject.CashUp.ServerConnection.Repository;
+import com.ioproject.CashUp.R;
+import com.ioproject.CashUp.data.model.server_connection.Repository;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 
-public class Registation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
+public class RegistationView extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private String name;
+    private String surname;
+    private String email;
+    private String login;
+    private String password;
+    private Integer selectedMonthNumber;
+    private Button signUpButton;
     private String [] months = new String[] {"Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesien", "Październik", "Listopad", "Grudzień"};
 
     @Override
@@ -30,29 +37,35 @@ public class Registation extends AppCompatActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_sign_up);
         handleSpinners();
         final CheckBox termsAndCond = (CheckBox) findViewById(R.id.regulamin);
-        Button signUpButton = (Button) findViewById(R.id.registratrion_button);
+        signUpButton = (Button) findViewById(R.id.registratrion_button);
         signUpButton.setOnClickListener(new View.OnClickListener(){
            @Override
            public void onClick(View v){
                if(termsAndCond.isChecked()){
-                   String name = ((EditText) findViewById(R.id.name)).getText().toString();
-                   String surname = ((EditText) findViewById(R.id.surname)).getText().toString();
-                   String email = ((EditText) findViewById(R.id.email)).getText().toString();
-                   String login = ((EditText) findViewById(R.id.login_reg)).getText().toString();
-                   String password = ((EditText) findViewById(R.id.password_registration)).getText().toString();
+                   name = ((EditText) findViewById(R.id.name)).getText().toString();
+                   surname = ((EditText) findViewById(R.id.surname)).getText().toString();
+                   email = ((EditText) findViewById(R.id.email)).getText().toString();
+                   login = ((EditText) findViewById(R.id.login_reg)).getText().toString();
+                   password = ((EditText) findViewById(R.id.password_registration)).getText().toString();
                    String selectedMonthName = ((Spinner) findViewById(R.id.spinner_months)).getSelectedItem().toString();
-                   Integer selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
+                   selectedMonthNumber = Arrays.asList(months).indexOf(selectedMonthName)+1;
 
                    String birthday = ((Spinner) findViewById(R.id.spinner_years)).getSelectedItem().toString() + "-"+selectedMonthNumber.toString()+"-"+((Spinner) findViewById(R.id.spinner_day)).getSelectedItem().toString();
                    try {
-
-                       String add = Repository.addNewUser(name, surname, email, login,
-                               password, birthday);
-                       if(!add.equals("User with this login already exists\n")){
-                           logIn(v);
+                       if(checkNameSurname()){
+                           String add = Repository.addNewUser(name, surname, email, login,
+                                   password, birthday);
+                           if(!add.equals("User with this login already exists".trim())){
+                               Toast.makeText(getApplicationContext(), "poprawna rejestracja", Toast.LENGTH_SHORT).show();
+                               logIn(v);
+                           }
+                           else{
+                               Toast.makeText(getApplicationContext(), "użytkownik o takim loginie lub mailu już istnieje", Toast.LENGTH_SHORT).show();
+                           }
                        }
-                       System.out.println(add);
-
+                       else {
+                           Toast.makeText(getApplicationContext(), "niepoprawne imię lub nazwisko", Toast.LENGTH_SHORT).show();
+                       }
                    } catch (UnsupportedEncodingException ex){
                        System.out.println(ex);
                    } catch (IOException e) {
@@ -67,7 +80,7 @@ public class Registation extends AppCompatActivity implements AdapterView.OnItem
     }
 
     public void registration(View view) {
-        Intent intent_registration = new Intent(this, Registation.class);
+        Intent intent_registration = new Intent(this, RegistationView.class);
         startActivity(intent_registration);
     }
 
@@ -75,7 +88,6 @@ public class Registation extends AppCompatActivity implements AdapterView.OnItem
         Intent intent_login = new Intent(this, LogInView.class);
         startActivity(intent_login);
     }
-
     public void handleSpinners(){
         Spinner days = findViewById(R.id.spinner_day);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
@@ -95,6 +107,29 @@ public class Registation extends AppCompatActivity implements AdapterView.OnItem
         years.setAdapter(adapter3);
         years.setOnItemSelectedListener(this);
     }
+
+    private Boolean checkNameSurname(){
+        if(name.trim().isEmpty() || name.trim().isEmpty()){
+            return false;
+        }
+        int flag = 0;
+        for(int i = 0; i< name.length(); i++){
+            int ascii = (int) name.charAt(i);
+            if(!((ascii >= 97 && ascii <= 122) || (ascii >= 65 && ascii <= 90))){
+                flag = 1;
+            }
+        }
+        for(int i = 0; i< surname.length(); i++){
+            int ascii = (int) surname.charAt(i);
+            if(!((ascii >= 97 && ascii <= 122) || (ascii >= 65 && ascii <= 90) || ascii == 45)){
+                flag = 1;
+            }
+        }
+        if(flag == 1)
+            return false;
+        return true;
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
        // String text = parent.getItemAtPosition(position).toString();

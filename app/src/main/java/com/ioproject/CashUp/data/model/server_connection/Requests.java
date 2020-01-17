@@ -1,4 +1,4 @@
-package com.ioproject.CashUp.ServerConnection;
+package com.ioproject.CashUp.data.model.server_connection;
 
 //class is handling converting app requests to JSONs matching with REST API shared by server
 
