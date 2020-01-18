@@ -92,26 +92,10 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/bilansGrupy"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:text="Bilans:"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.926"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.119" />
-
-    <TextView
         android:id="@+id/wydatkiGrupy"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:text="Wydatki:"
+        android:text="Wydatki"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -127,7 +111,7 @@
         android:id="@+id/dochodyGrupy"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:text="Dochody:"
+        android:text="Bilans"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -138,21 +122,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.55" />
-
-    <TextView
-        android:id="@+id/bilansGrupy"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:text="50 zł"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.951"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.168" />
 
 </android.support.constraint.ConstraintLayout>

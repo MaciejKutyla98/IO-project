@@ -9,19 +9,24 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.ioproject.CashUp.R;
+import com.ioproject.CashUp.data.model.FromJSONToString;
+import com.ioproject.CashUp.data.model.server_connection.Repository;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GroupBilans extends AppCompatActivity {
 
     private String userId;
     private String username;
-    private String chosenGroup;
+    private String groupId;
     private Button NewGroupIncome;
     ListView listViewOutgo;
     ListView listViewIncome;
-    private ArrayList<String> outgo = new ArrayList<>();
-    private ArrayList<String> income = new ArrayList<>();
+    private ArrayList<String> balance = new ArrayList<>();
+    private ArrayList<String> history = new ArrayList<>();
 
 
     @Override
@@ -32,28 +37,27 @@ public class GroupBilans extends AppCompatActivity {
 
         username = getIntent().getStringExtra("nazwaUzytkownika");
         userId = getIntent().getStringExtra("idUzytkownika");
-        chosenGroup = getIntent().getStringExtra("grupa");
+        groupId = getIntent().getStringExtra("grupa");
 
         listViewOutgo = (ListView) findViewById(R.id.listviewWydatkiGrupy);
-//        String summary = null;
-//        try {
-//            FromJSONToString fromJSONToString = new FromJSONToString(Repository.showAllTransactions(userId));
-//            income = fromJSONToString.fromJSONTOStringIncome();
-//            outgo = fromJSONToString.fromJSONTOStringOutgo();
-//            summary = fromJSONToString.fromJSONBalanceSheet() + ".00";
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            FromJSONToString fromJSONToStringHistory = new FromJSONToString(Repository.showUserHistory(username, groupId));
+            FromJSONToString fromJSONToStringBalance = new FromJSONToString(Repository.showUserBalance(username, groupId));
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, outgo);
+            history = fromJSONToStringHistory.fromJSONToStringGroupHistory();
+            balance = fromJSONToStringBalance.fromJSONToStringGroupBalance();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, balance);
         listViewOutgo.setAdapter(arrayAdapter);
         listViewIncome = (ListView) findViewById(R.id.listviewDochodyGrupy);
 
-        ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_list_item_1, income);
+        ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_list_item_1, history);
         listViewIncome.setAdapter(arrayAdapter2);
-//        ((TextView) findViewById(R.id.bilansBazy)).setText(summary);
 
         NewGroupIncome = (Button) findViewById(R.id.wyborGrupy);
         NewGroupIncome.setOnClickListener(new View.OnClickListener() {
@@ -67,9 +71,8 @@ public class GroupBilans extends AppCompatActivity {
     public void newGroupIncome(View view) {
         Intent intent_newGroupIncomee = new Intent(this, com.ioproject.CashUp.view.NewGroupIncome.class);
         intent_newGroupIncomee.putExtra("nazwaUzytkownika", username);
-        intent_newGroupIncomee.putExtra("grupa", chosenGroup);
+        intent_newGroupIncomee.putExtra("grupa", groupId);
         intent_newGroupIncomee.putExtra("idUzytkownika", userId);
         startActivity(intent_newGroupIncomee);
     }
-
 }

@@ -65,7 +65,7 @@ public class Requests {
 
     public static String addNewGroupOutgo(String groupId, String price, String category, String description, String payer){
         String data = "{" + "\"command\": " + "\"new_group_payment\"";
-        data += ", " + "\"group_id\": \"" + groupId + "\"";
+        data += ", " + "\"group_name\": \"" + groupId + "\"";
         data += ", " + "\"quota\": " + price;
         data += ", " + "\"category\": \"" + category + "\"";
         data += ", " + "\"description\": \"" + description + "\"";
@@ -76,7 +76,8 @@ public class Requests {
     public static String showUserBalance(String login, String groudId){
         String data = "{" + "\"command\": " + "\"show_balance\"";
         data += ", " + "\"login\": \"" + login + "\"";
-        data += ", " + "\"group_id\": " + groudId + "}";
+        data += ", " + "\"group_name\": \"" + groudId + "\"}";
+        System.out.println(data);
         return data;
     }
 
@@ -96,7 +97,8 @@ public class Requests {
     public static String showUserHistory(String login, String groudId){
         String data = "{" + "\"command\": " + "\"show_history\"";
         data += ", " + "\"login\": \"" + login + "\"";
-        data += ", " + "\"group_id\": " + groudId + "}";
+        data += ", " + "\"group_name\": \"" + groudId + "\"}";
+        System.out.println(data);
         return data;
     }
 }

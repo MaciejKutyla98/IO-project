@@ -19,6 +19,9 @@ public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnI
     private String userId;
     private String username;
     private String chosenGroup;
+    private List<String> members = new ArrayList<>();
+    private String payer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,7 @@ public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnI
         username = getIntent().getStringExtra("nazwaUzytkownika");
         userId = getIntent().getStringExtra("idUzytkownika");
         chosenGroup = getIntent().getStringExtra("grupa");
-        List<String> members = new ArrayList<>();
+
         members.add("Hubert Kompanowski");
         members.add("Alicja Brajner");
         members.add("Maciej Kutyłą");
@@ -37,16 +40,16 @@ public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnI
         dataAdapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
         listOfMembers.setAdapter(dataAdapter);
         listOfMembers.setOnItemSelectedListener(this);
+        payer = listOfMembers.getSelectedItem().toString();
 
         saveGroupOutCome = (Button) findViewById(R.id.AddNewOutComeButton);
         saveGroupOutCome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 backToGroup(v);
                 }
         });
-
-
     }
 
     @Override

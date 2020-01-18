@@ -55,7 +55,7 @@ public class FromJSONToString {
         JSONArray balance = json.getJSONArray("balance");
         for(int i = 0; i < balance.length(); i++){
             String userWithBalance;
-            userWithBalance = balance.getJSONArray(i).getString(0) + ": " + balance.getJSONArray(i).getInt(1);
+            userWithBalance = balance.getJSONArray(i).getString(0) + ": " + String.valueOf(balance.getJSONArray(i).getInt(1));
             groupBalance.add(userWithBalance);
         }
         return groupBalance;
