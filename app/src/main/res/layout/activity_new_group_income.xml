@@ -10,7 +10,7 @@
         android:id="@+id/background"
         android:layout_width="420dp"
         android:layout_height="60dp"
-        android:background="#D32F2F"
+        android:background="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,7 +27,7 @@
         android:padding="@dimen/appbar_padding"
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-        android:textColor="@android:color/white"
+        android:textColor="#66ffcc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -115,7 +115,9 @@
         android:id="@+id/AddNewOutComeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/black"
         android:text="Dodaj"
+        android:textColor="#66ffcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.823"
