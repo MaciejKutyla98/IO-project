@@ -70,6 +70,17 @@ public class FromJSONToString {
         System.out.println(allGroups);
         return allGroups;
     }
+
+    public ArrayList<String> fromJSONToStringGetAllUserInGroup() throws JSONException {
+        ArrayList<String> allGroups = new ArrayList<>();
+        JSONArray groups = json.getJSONArray("logins");
+        for(int i = 0; i< groups.length(); i++){
+            allGroups.add(groups.getString(i));
+        }
+        System.out.println(allGroups);
+        return allGroups;
+    }
+
     public ArrayList<String> fromJSONToStringGroupHistory() throws JSONException {
         ArrayList<String> groupBalance = new ArrayList<>();
         JSONArray balance = json.getJSONArray("history");

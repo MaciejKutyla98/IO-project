@@ -54,8 +54,9 @@ public class Repository {
         return result;
     }
 
-    public static void addNewGroupOutgo(String groupId, String price, String category, String description, String payer) throws IOException {
+    public static String addNewGroupOutgo(String groupId, String price, String category, String description, String payer) throws IOException {
         setResult(requestsHandler.sendRequestAndGetResponse("https://cash-success.appspot.com", Requests.addNewGroupOutgo(groupId, price, category, description, payer)));
+        return result;
     }
 
     public static String showUserBalance(String login, String groudId) throws IOException {
@@ -75,6 +76,11 @@ public class Repository {
 
     public static String showUserHistory(String login, String groudId) throws IOException {
         setResult(requestsHandler.sendRequestAndGetResponse("https://cash-success.appspot.com", Requests.showUserHistory(login, groudId)));
+        return result;
+    }
+
+    public static String getAllUserInGroup(String groupName) throws IOException {
+        setResult(requestsHandler.sendRequestAndGetResponse("https://cash-success.appspot.com", Requests.getAllUserInGroup(groupName)));
         return result;
     }
 }
