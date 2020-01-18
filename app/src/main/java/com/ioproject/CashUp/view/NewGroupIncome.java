@@ -14,6 +14,9 @@ import com.ioproject.CashUp.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class allows  to create a new group income
+ */
 public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Button saveGroupOutCome;
     private String userId;
@@ -22,7 +25,10 @@ public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnI
     private List<String> members = new ArrayList<>();
     private String payer;
 
-
+    /**
+     * This method is responsible for user contact mechanism
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -52,15 +58,29 @@ public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnI
         });
     }
 
+    /**
+     * This method allows a specific action at the time of selection items
+     * @param parent
+     * @param view Creates a new object of the View class
+     * @param position Specifies item position
+     * @param l
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
     }
 
+    /**
+     * This method allows a specific action at the time of none of the items are selected
+     * @param adapterView
+     */
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
-
+    /**
+     * This method takes us to a given group
+     * @param view Creates a new object of the View class
+     */
     public void backToGroup(View view) {
         Intent intent_back = new Intent(this, GroupHome.class);
         intent_back.putExtra("nazwaUzytkownika", username);

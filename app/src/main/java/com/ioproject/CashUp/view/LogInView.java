@@ -15,11 +15,18 @@ import com.ioproject.CashUp.data.model.server_connection.Repository;
 
 import java.io.IOException;
 
+/**
+ * Class responsible for logging into the application
+ */
 public class LogInView extends AppCompatActivity {
     private String login;
     private String password;
     private Button LogInButton;
 
+    /**
+     * This method is responsible for user contact mechanism
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -45,11 +52,21 @@ public class LogInView extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * This method leads to Registration View
+     * @param view Creates a new object of the View class
+     */
     public void registration(View view) {
         Intent intent_registration = new Intent(this, RegistationView.class);
         startActivity(intent_registration);
     }
 
+    /**
+     * This method leads to Individual Home View and sends id and username to the class IndividualHomeView
+     * @param view Creates a new object of the View class
+     * @param loggedInUser Allows to get id and username
+     */
     public void home(View view, LoggedInUser loggedInUser) {
         Intent intent_home= new Intent(this, IndividualHomeView.class);
         intent_home.putExtra("nazwaUzytkownika", loggedInUser.getDisplayName());
@@ -57,6 +74,11 @@ public class LogInView extends AppCompatActivity {
         startActivity(intent_home);
     }
 
+    /**
+     * This method checks if the login and password are correct and informs you that you have successfully logged in
+     * @param v Creates a new object of the View class
+     * @param result It shows answer the database query
+     */
     private void checkLoginPassword(View v, String result){
         if(login.trim().isEmpty() || password.trim().isEmpty()){
             Toast.makeText(getApplicationContext(), "nie podano loginu lub hasla", Toast.LENGTH_SHORT).show();

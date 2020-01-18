@@ -19,6 +19,9 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class responsible for choosing the right group
+ */
 public class GroupHome extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
     private String username;
     private String userId;
@@ -28,6 +31,10 @@ public class GroupHome extends AppCompatActivity implements AdapterView.OnItemSe
     private Button goToGroups;
     private Button newGroup;
 
+    /**
+     * This method is responsible for user contact mechanism
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -70,6 +77,11 @@ public class GroupHome extends AppCompatActivity implements AdapterView.OnItemSe
         });
     }
 
+    /**
+     * This method is responsible for swipe action which leads to the Individual view
+     * @param touchevent Retrieves click positions from the screen
+     * @return True if user swaps correctly and moves to Group view
+     */
     public boolean onTouchEvent(MotionEvent touchevent){
         switch (touchevent.getAction()){
             case MotionEvent.ACTION_DOWN:
@@ -89,14 +101,30 @@ public class GroupHome extends AppCompatActivity implements AdapterView.OnItemSe
         }
         return false;
     }
+
+    /**
+     * This method allows a specific action at the time of selection items
+     * @param parent
+     * @param view Creates a new object of the View class
+     * @param position Specifies item position
+     * @param l
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
     }
 
+    /**
+     * This method allows a specific action at the time of none of the items are selected
+     * @param adapterView
+     */
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
+    /**
+     * This method takes us to a given group
+     * @param view Creates a new object of the View class
+     */
     public void goToOtherGroup(View view) {
         Intent new_groups = new Intent(this, GroupBilans.class);
         new_groups.putExtra("nazwaUzytkownika", username);
@@ -105,6 +133,10 @@ public class GroupHome extends AppCompatActivity implements AdapterView.OnItemSe
         startActivity(new_groups);
     }
 
+    /**
+     * This method takes us to a new group creator
+     * @param view Creates a new object of the View class
+     */
     public void createNewGroup(View view) {
         Intent new_group = new Intent(this, NewGroup.class);
         new_group.putExtra("nazwaUzytkownika", username);

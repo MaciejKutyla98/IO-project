@@ -17,6 +17,9 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class responsible for groups balance
+ */
 public class GroupBilans extends AppCompatActivity {
 
     private String userId;
@@ -28,7 +31,10 @@ public class GroupBilans extends AppCompatActivity {
     private ArrayList<String> balance = new ArrayList<>();
     private ArrayList<String> history = new ArrayList<>();
 
-
+    /**
+     * This method is responsible for user contact mechanism
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -68,6 +74,10 @@ public class GroupBilans extends AppCompatActivity {
             });
     }
 
+    /**
+     * This method allows to add new group income
+     * @param view Creates a new object of the View class
+     */
     public void newGroupIncome(View view) {
         Intent intent_newGroupIncomee = new Intent(this, com.ioproject.CashUp.view.NewGroupIncome.class);
         intent_newGroupIncomee.putExtra("nazwaUzytkownika", username);

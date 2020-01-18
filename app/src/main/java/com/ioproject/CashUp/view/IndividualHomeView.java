@@ -19,7 +19,9 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/**
+ * Class responsible for personal balance
+ */
 public class IndividualHomeView extends AppCompatActivity {
 
     private Button choice;
@@ -34,6 +36,10 @@ public class IndividualHomeView extends AppCompatActivity {
     private ArrayList<String> income = new ArrayList<>();
     float x1,x2,y1,y2;
 
+    /**
+     * This method is responsible for user contact mechanism
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -97,6 +103,10 @@ public class IndividualHomeView extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method allows to add new outcome
+     * @param view Creates a new object of the View class
+     */
     public void newOutgo(View view) {
         Intent intent_newBill = new Intent(this, NewOutgoView.class);
         intent_newBill.putExtra("nazwaUzytkownika", username);
@@ -104,12 +114,22 @@ public class IndividualHomeView extends AppCompatActivity {
         startActivity(intent_newBill);
     }
 
+    /**
+     * This method allows  to add new income
+     * @param view Creates a new object of the View class
+     */
     public void newIncome(View view) {
         Intent intent_newIncome = new Intent(this, NewIncomeView.class);
         intent_newIncome.putExtra("nazwaUzytkownika", username);
         intent_newIncome.putExtra("idUzytkownika", userId);
         startActivity(intent_newIncome);
     }
+
+    /**
+     * This method is responsible for swipe action which leads to the Group view
+     * @param touchevent Retrieves click positions from the screen
+     * @return True if user swaps correctly and moves to Group view
+     */
     public boolean onTouchEvent(MotionEvent touchevent){
         switch (touchevent.getAction()){
             case MotionEvent.ACTION_DOWN:

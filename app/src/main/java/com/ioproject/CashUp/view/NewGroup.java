@@ -19,6 +19,9 @@ import com.ioproject.CashUp.data.model.server_connection.Repository;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class allows  to create a new group
+ */
 public class NewGroup extends AppCompatActivity {
     private ArrayList<UsersList> listOfUsers = new ArrayList<>();
     private ArrayList<String> userListToDatabase = new ArrayList<>();
@@ -34,7 +37,10 @@ public class NewGroup extends AppCompatActivity {
     private Button addPersonButton;
     ListView listViewOutgo;
 
-
+    /**
+     * This method is responsible for user contact mechanism
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -98,16 +104,28 @@ public class NewGroup extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method deletes user after clicking
+     * @param position Gets position from the list
+     */
     public void removeItem(int position) {
         listOfUsers.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
 
+    /**
+     * This method changes the default text to the one given by us
+     * @param position Gets position from the list
+     * @param text Indicates the text to be changed
+     */
     public void changeItem(int position, String text) {
         listOfUsers.get(position).changeText1(text);
         mAdapter.notifyItemChanged(position);
     }
 
+    /**
+     * This method builds RecyclerView
+     */
     public void buildRecyclerView() {
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
@@ -130,6 +148,10 @@ public class NewGroup extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method takes us to a given group
+     * @param view Creates a new object of the View class
+     */
     public void backToGroupHome(View view){
         Intent i = new Intent(this, GroupHome.class);
         i.putExtra("nazwaUzytkownika", username);
