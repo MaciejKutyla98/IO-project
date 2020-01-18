@@ -101,4 +101,11 @@ public class Requests {
         System.out.println(data);
         return data;
     }
+
+    public static String getAllUserInGroup(String group_name){
+        String data = "{" + "\"command\": " + "\"get_members\"";
+        data += ", " + "\"group_name\": \"" + group_name + "\"}";
+        System.out.println(data);
+        return data;
+}
 }

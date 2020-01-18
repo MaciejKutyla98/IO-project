@@ -7,10 +7,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ioproject.CashUp.R;
+import com.ioproject.CashUp.data.model.FromJSONToString;
+import com.ioproject.CashUp.data.model.server_connection.Repository;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +28,11 @@ public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnI
     private String username;
     private String chosenGroup;
     private List<String> members = new ArrayList<>();
+    private List<String> categoryList = new ArrayList<>();
     private String payer;
-
+    private String price;
+    private String category;
+    private String description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +43,55 @@ public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnI
         userId = getIntent().getStringExtra("idUzytkownika");
         chosenGroup = getIntent().getStringExtra("grupa");
 
-        members.add("Hubert Kompanowski");
-        members.add("Alicja Brajner");
-        members.add("Maciej Kutyłą");
-        Spinner listOfMembers = findViewById(R.id.spinner_choose_person);
+        ((TextView) findViewById(R.id.GroupName)).setText(chosenGroup);
+
+        String result = null;
+        try {
+            result = Repository.getAllUserInGroup(chosenGroup);
+            FromJSONToString fromJSONToString = new FromJSONToString(result);
+            System.out.println(result);
+            members = fromJSONToString.fromJSONToStringGetAllUserInGroup();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        categoryList.add("planszówki");
+        categoryList.add("piwko");
+        categoryList.add("winko");
+        final Spinner listOfMembers = findViewById(R.id.spinner_choose_person);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, members);
         dataAdapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
         listOfMembers.setAdapter(dataAdapter);
         listOfMembers.setOnItemSelectedListener(this);
-        payer = listOfMembers.getSelectedItem().toString();
+
+        final Spinner categorySpinner = findViewById(R.id.KategorieGrup);
+        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categoryList);
+        dataAdapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
+        listOfMembers.setAdapter(dataAdapter);
+        listOfMembers.setOnItemSelectedListener(this);
 
         saveGroupOutCome = (Button) findViewById(R.id.AddNewOutComeButton);
         saveGroupOutCome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                payer = listOfMembers.getSelectedItem().toString();
+                price = ((EditText) findViewById(R.id.KwotaGrupy)).getText().toString();
+                category = categorySpinner.getSelectedItem().toString();
+                description = ((EditText) findViewById(R.id.opis)).getText().toString();
+                if(!price.isEmpty()){
+                    try {
+                        String result = Repository.addNewGroupOutgo(chosenGroup, price, category, description, payer);
+                        if(result.trim().equals("Added")){
+                            Toast.makeText(getApplicationContext(), "Dodano wydatek", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), "Coś poszło nie tak", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 backToGroup(v);
                 }
         });
