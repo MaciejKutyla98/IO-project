@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.NewGroup"></activity>
+        <activity android:name=".view.NewGroup" />
         <activity android:name=".view.GroupBilans" />
         <activity android:name=".view.GroupHome" />
         <activity android:name=".view.NewIncomeView" />

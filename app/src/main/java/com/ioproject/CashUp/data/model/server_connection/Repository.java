@@ -49,8 +49,9 @@ public class Repository {
         return result;
     }
 
-    public static void addNewGroup(String name, String description, ArrayList<String> members) throws IOException {
+    public static String addNewGroup(String name, String description, ArrayList<String> members) throws IOException {
         setResult(requestsHandler.sendRequestAndGetResponse("https://cash-success.appspot.com", Requests.addNewGroup(name, description, members)));
+        return result;
     }
 
     public static void addNewGroupOutgo(String groupId, String price, String category, String description, String payer) throws IOException {

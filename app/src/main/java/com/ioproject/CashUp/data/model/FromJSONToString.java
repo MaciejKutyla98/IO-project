@@ -69,4 +69,14 @@ public class FromJSONToString {
         }
         return allGroups;
     }
+    public ArrayList<String> fromJSONToStringGroupHistory() throws JSONException {
+        ArrayList<String> groupBalance = new ArrayList<>();
+        JSONArray balance = json.getJSONArray("history");
+        for(int i = 0; i < balance.length(); i++){
+            String userWithBalance;
+            userWithBalance = balance.getJSONArray(i).getString(0) + "\n" + balance.getJSONArray(i).getString(1) + "\n" + balance.getJSONArray(i).getInt(2);
+            groupBalance.add(userWithBalance);
+        }
+        return groupBalance;
+    }
 }

@@ -1,22 +1,16 @@
 package com.ioproject.CashUp.view;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ioproject.CashUp.NewGroupIncome;
 import com.ioproject.CashUp.R;
-import com.ioproject.CashUp.data.model.FromJSONToString;
-import com.ioproject.CashUp.data.model.server_connection.Repository;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class GroupBilans extends AppCompatActivity {
@@ -37,16 +31,16 @@ public class GroupBilans extends AppCompatActivity {
 
         listViewOutgo = (ListView) findViewById(R.id.listviewWydatkiGrupy);
         String summary = null;
-        try {
-            FromJSONToString fromJSONToString = new FromJSONToString(Repository.showAllTransactions(userId));
-            income = fromJSONToString.fromJSONTOStringIncome();
-            outgo = fromJSONToString.fromJSONTOStringOutgo();
-            summary = fromJSONToString.fromJSONBalanceSheet() + ".00";
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        try {
+////            FromJSONToString fromJSONToString = new FromJSONToString(Repository.showAllTransactions(userId));
+////            income = fromJSONToString.fromJSONTOStringIncome();
+////            outgo = fromJSONToString.fromJSONTOStringOutgo();
+////            summary = fromJSONToString.fromJSONBalanceSheet() + ".00";
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, outgo);
         listViewOutgo.setAdapter(arrayAdapter);
