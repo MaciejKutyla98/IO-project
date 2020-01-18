@@ -15,6 +15,9 @@ import com.ioproject.CashUp.data.model.server_connection.Repository;
 
 import java.io.IOException;
 
+/**
+ * Class allows to add new personal outcome
+ */
 public class NewOutgoView extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
     private Button saveOutgo;
@@ -22,22 +25,42 @@ public class NewOutgoView extends AppCompatActivity implements AdapterView.OnIte
     private String userId;
     private String username;
 
+    /**
+     * This metod sets userId
+     * @param userId
+     */
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
+    /**
+     * This method gets userId
+     * @return
+     */
     public String getUserId() {
         return userId;
     }
 
+    /**
+     * This method sets username
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * This method gets username
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * This method is responsible for user contact mechanism
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -77,6 +100,11 @@ public class NewOutgoView extends AppCompatActivity implements AdapterView.OnIte
         });
     }
 
+
+    /**
+     * This method takes us to a Individual Home view
+     * @param view Creates a new object of the View class
+     */
     public void backToHome(View view) {
         Intent intent_newBill = new Intent(this, IndividualHomeView.class);
         intent_newBill.putExtra("nazwaUzytkownika", username);
@@ -84,6 +112,10 @@ public class NewOutgoView extends AppCompatActivity implements AdapterView.OnIte
         startActivity(intent_newBill);
     }
 
+    /**
+     * This method saves new outcome
+     * @param view Creates a new object of the View class
+     */
     public void saveBill(View view) {
         Intent intent_newBill = new Intent(this, IndividualHomeView.class);
         intent_newBill.putExtra("nazwaUzytkownika", username);
@@ -91,10 +123,21 @@ public class NewOutgoView extends AppCompatActivity implements AdapterView.OnIte
         startActivity(intent_newBill);
     }
 
+    /**
+     * This method allows a specific action at the time of selection items
+     * @param parent
+     * @param view Creates a new object of the View class
+     * @param position Specifies item position
+     * @param l
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
     }
 
+    /**
+     * This method allows a specific action at the time of none of the items are selected
+     * @param adapterView
+     */
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
     }

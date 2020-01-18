@@ -19,7 +19,9 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
-
+/**
+ * Class allows new users to register
+ */
 public class RegistationView extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private String name;
     private String surname;
@@ -31,6 +33,10 @@ public class RegistationView extends AppCompatActivity implements AdapterView.On
     private Button signUpButton;
     private String [] months = new String[] {"Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesien", "Październik", "Listopad", "Grudzień"};
 
+    /**
+     * This method is responsible for user contact mechanism
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -94,15 +100,27 @@ public class RegistationView extends AppCompatActivity implements AdapterView.On
        });
     }
 
+    /**
+     * This method allows to register
+     * @param view Creates a new object of the View class
+     */
     public void registration(View view) {
         Intent intent_registration = new Intent(this, RegistationView.class);
         startActivity(intent_registration);
     }
 
+    /**
+     * This method allows to log in
+     * @param view Creates a new object of the View class
+     */
     public void logIn(View view) {
         Intent intent_login = new Intent(this, LogInView.class);
         startActivity(intent_login);
     }
+
+    /**
+     * This method creates necessary  spinners
+     */
     public void handleSpinners(){
         Spinner days = findViewById(R.id.spinner_day);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
@@ -123,6 +141,10 @@ public class RegistationView extends AppCompatActivity implements AdapterView.On
         years.setOnItemSelectedListener(this);
     }
 
+    /**
+     * This method validates the name field
+     * @return true if it is okey, otherwise false
+     */
     private Boolean checkNameSurname(){
         if(name.trim().isEmpty() || name.trim().isEmpty()){
             return false;
@@ -145,6 +167,10 @@ public class RegistationView extends AppCompatActivity implements AdapterView.On
         return true;
     }
 
+    /**
+     * This method validates the password field
+     * @return true if it is okey, otherwise false
+     */
     private Boolean checkPassword(){
         if(password.length() < 6)
             return false;
@@ -160,6 +186,10 @@ public class RegistationView extends AppCompatActivity implements AdapterView.On
         return true;
     }
 
+    /**
+     * This method validates the email field
+     * @return true if it is okey, otherwise false
+     */
     private Boolean checkEmail(){
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
@@ -167,12 +197,23 @@ public class RegistationView extends AppCompatActivity implements AdapterView.On
         return m.matches();
     }
 
+    /**
+     * This method allows a specific action at the time of selection items
+     * @param parent
+     * @param view Creates a new object of the View class
+     * @param position Specifies item position
+     * @param l
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
        // String text = parent.getItemAtPosition(position).toString();
        // Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * This method allows a specific action at the time of none of the items are selected
+     * @param adapterView
+     */
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
