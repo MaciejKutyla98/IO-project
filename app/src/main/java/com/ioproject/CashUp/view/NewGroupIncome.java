@@ -63,9 +63,13 @@ public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnI
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        categoryList.add("planszówki");
+        categoryList.add("planszowki");
         categoryList.add("piwko");
-        categoryList.add("winko");
+        categoryList.add("rozrywka");
+        categoryList.add("nauka");
+        categoryList.add("studia");
+        categoryList.add("jedzenie");
+
         final Spinner listOfMembers = findViewById(R.id.spinner_choose_person);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, members);
         dataAdapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);

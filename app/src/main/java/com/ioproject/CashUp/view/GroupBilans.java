@@ -45,19 +45,20 @@ public class GroupBilans extends AppCompatActivity {
         userId = getIntent().getStringExtra("idUzytkownika");
         groupId = getIntent().getStringExtra("grupa");
 
-        listViewOutgo = (ListView) findViewById(R.id.listviewWydatkiGrupy);
         try {
             String result = Repository.showUserHistory(username, groupId);
             String result2 = Repository.showUserBalance(username, groupId);
+            System.out.println(result2);
             if(!result.trim().equals("empty")){
                 System.out.println(result);
                 FromJSONToString fromJSONToStringHistory = new FromJSONToString(result);
                 history = fromJSONToStringHistory.fromJSONToStringGroupHistory();
             }
-            else if(!result2.trim().equals("empty")){
+            if(!result2.trim().equals("empty")){
                 System.out.println(result2);
                 FromJSONToString fromJSONToStringBalance = new FromJSONToString(result2);
                 balance = fromJSONToStringBalance.fromJSONToStringGroupBalance();
+                System.out.println(balance);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,10 +66,11 @@ public class GroupBilans extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        listViewOutgo = (ListView) findViewById(R.id.bilans);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, balance);
         listViewOutgo.setAdapter(arrayAdapter);
-        listViewIncome = (ListView) findViewById(R.id.listviewDochodyGrupy);
 
+        listViewIncome = (ListView) findViewById(R.id.historia);
         ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_list_item_1, history);
         listViewIncome.setAdapter(arrayAdapter2);
 

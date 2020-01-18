@@ -58,6 +58,7 @@ public class FromJSONToString {
             userWithBalance = balance.getJSONArray(i).getString(0) + ": " + String.valueOf(balance.getJSONArray(i).getInt(1));
             groupBalance.add(userWithBalance);
         }
+        System.out.println(groupBalance);
         return groupBalance;
     }
 
