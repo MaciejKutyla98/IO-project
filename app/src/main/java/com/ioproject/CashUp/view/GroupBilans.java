@@ -47,11 +47,18 @@ public class GroupBilans extends AppCompatActivity {
 
         listViewOutgo = (ListView) findViewById(R.id.listviewWydatkiGrupy);
         try {
-            FromJSONToString fromJSONToStringHistory = new FromJSONToString(Repository.showUserHistory(username, groupId));
-            FromJSONToString fromJSONToStringBalance = new FromJSONToString(Repository.showUserBalance(username, groupId));
-
-            history = fromJSONToStringHistory.fromJSONToStringGroupHistory();
-            balance = fromJSONToStringBalance.fromJSONToStringGroupBalance();
+            String result = Repository.showUserHistory(username, groupId);
+            String result2 = Repository.showUserBalance(username, groupId);
+            if(result.trim().equals("empty")){
+                System.out.println(result);
+                FromJSONToString fromJSONToStringHistory = new FromJSONToString(result);
+                history = fromJSONToStringHistory.fromJSONToStringGroupHistory();
+            }
+            else if(result2.trim().equals("empty")){
+                System.out.println(result2);
+                FromJSONToString fromJSONToStringBalance = new FromJSONToString(result2);
+                balance = fromJSONToStringBalance.fromJSONToStringGroupBalance();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
