@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class responsible for creating a new group expense
+ */
 public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Button saveGroupOutCome;
     private String userId;
@@ -34,6 +37,10 @@ public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnI
     private String category;
     private String description;
 
+    /**
+     * This method is responsible for user contact mechanism
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -97,15 +104,29 @@ public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnI
         });
     }
 
+    /**
+     * This method allows a specific action at the time of selection items
+     * @param parent
+     * @param view Creates a new object of the View class
+     * @param position Specifies item position
+     * @param l
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
     }
 
+    /**
+     * This method allows a specific action at the time of none of the items are selected
+     * @param adapterView
+     */
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
-
+    /**
+     * This method takes us to a Group view
+     * @param view Creates a new object of the View class
+     */
     public void backToGroup(View view) {
         Intent intent_back = new Intent(this, GroupHome.class);
         intent_back.putExtra("nazwaUzytkownika", username);
