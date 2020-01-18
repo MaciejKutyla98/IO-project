@@ -17,7 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Class allows to add new personal income
+ */
 public class NewIncomeView extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
     private Button saveIncome;
@@ -30,26 +32,51 @@ public class NewIncomeView extends AppCompatActivity implements AdapterView.OnIt
     private ArrayList<String> categories = new ArrayList<>();
     private String [] months = new String[] {"Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesien", "Październik", "Listopad", "Grudzień"};
 
+    /**
+     * This metod sets userId
+     * @param userId
+     */
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
+    /**
+     * This method gets userId
+     * @return
+     */
     public String getUserId() {
         return userId;
     }
 
+    /**
+     * This method sets username
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * This method gets username
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * This method add new element to the list
+     * @param category Name of the list
+     * @param element  Element to be inserted
+     */
     public void addNewElementToList(List<String> category, String element){
         category.add(element);
     }
 
+    /**
+     * This method is responsible for user contact mechanism
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -95,6 +122,11 @@ public class NewIncomeView extends AppCompatActivity implements AdapterView.OnIt
             }
         });
     }
+
+    /**
+     * This method takes us to a Individual Home view
+     * @param view Creates a new object of the View class
+     */
     public void backToHome(View view) {
         Intent intent_newBill = new Intent(this, IndividualHomeView.class);
         intent_newBill.putExtra("nazwaUzytkownika", username);
@@ -102,16 +134,31 @@ public class NewIncomeView extends AppCompatActivity implements AdapterView.OnIt
         startActivity(intent_newBill);
     }
 
+    /**
+     * This method saves new income
+     * @param view Creates a new object of the View class
+     */
     public void saveIncome(View view) {
         Intent intent_newBill = new Intent(this, IndividualHomeView.class);
         intent_newBill.putExtra("nazwaUzytkownika", username);
         intent_newBill.putExtra("idUzytkownika", userId);
         startActivity(intent_newBill);
     }
+    /**
+     * This method allows a specific action at the time of selection items
+     * @param parent
+     * @param view Creates a new object of the View class
+     * @param position Specifies item position
+     * @param l
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
     }
 
+    /**
+     * This method allows a specific action at the time of none of the items are selected
+     * @param adapterView
+     */
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
     }

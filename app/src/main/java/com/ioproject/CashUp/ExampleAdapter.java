@@ -9,20 +9,29 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-
+/**
+ * This class makes exmaple adapter which is used in RecyclerView lists
+ */
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
     private ArrayList<UsersList> mExampleList;
     private OnItemClickListener mListener;
 
+    /**
+     * This interface is responsible for informing whether an object has been clicked or deleted
+     */
     public interface OnItemClickListener {
         void onItemClick(int position);
         void onDeleteClick(int position);
     }
 
+
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
 
+    /**
+     *The method responsible for the appearance of the RecyclerView list
+     */
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
         public TextView mTextView1;
@@ -73,6 +82,11 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         return evh;
     }
 
+    /**
+     * This method changes the list after clicking
+     * @param holder
+     * @param position Indicates which item has been clicked
+     */
     @Override
     public void onBindViewHolder(ExampleViewHolder holder, int position) {
         UsersList currentItem = mExampleList.get(position);
@@ -82,6 +96,10 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         holder.mTextView2.setText(currentItem.getText2());
     }
 
+    /**
+     * The method counts items in the list
+     * @return
+     */
     @Override
     public int getItemCount() {
         return 0;
