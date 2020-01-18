@@ -64,9 +64,10 @@ public class FromJSONToString {
     public ArrayList<String> fromJSONToStringGetAllUserGroups() throws JSONException {
         ArrayList<String> allGroups = new ArrayList<>();
         JSONArray groups = json.getJSONArray("groups");
-        for(int i = 0; i< json.length(); i++){
+        for(int i = 0; i< groups.length(); i++){
             allGroups.add(groups.getString(i));
         }
+        System.out.println(allGroups);
         return allGroups;
     }
     public ArrayList<String> fromJSONToStringGroupHistory() throws JSONException {

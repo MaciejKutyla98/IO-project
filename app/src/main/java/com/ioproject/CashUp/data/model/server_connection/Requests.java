@@ -50,15 +50,16 @@ public class Requests {
     public static String addNewGroup(String name, String description, ArrayList<String> members){
         StringBuilder membersString = new StringBuilder();
         for(String i: members){
-            if(members.get(0) != i){
-                membersString.append(", ");
+            if(!members.get(0).equals(i)){
+                membersString.append("\", \"");
             }
-            membersString.append("\"").append(i).append("\"");
+            membersString.append(i);
         }
         String data = "{" + "\"command\": " + "\"group_add\"";
         data += ", " + "\"group_name\": \"" + name + "\"";
         data += ", " + "\"group_description\": \"" + description + "\"";
         data += ", " + "\"group_members\": [\"" + membersString + "\"]}";
+        System.out.println(data);
         return data;
     }
 
@@ -82,6 +83,7 @@ public class Requests {
     public static String getAllUserGroups(String login){
         String data = "{" + "\"command\": " + "\"get_groups\"";
         data += ", " + "\"login\": \"" + login + "\"}";
+        System.out.println(data);
         return data;
     }
 

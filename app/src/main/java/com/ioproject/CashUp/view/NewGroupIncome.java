@@ -1,32 +1,33 @@
-package com.ioproject.CashUp;
+package com.ioproject.CashUp.view;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.List;
-
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.ioproject.CashUp.view.GroupBilans;
-import com.ioproject.CashUp.view.GroupHome;
-import com.ioproject.CashUp.view.NewIncomeView;
+import com.ioproject.CashUp.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Button saveGroupOutCome;
+    private String userId;
+    private String username;
+    private String chosenGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_group_income);
+        username = getIntent().getStringExtra("nazwaUzytkownika");
+        userId = getIntent().getStringExtra("idUzytkownika");
+        chosenGroup = getIntent().getStringExtra("grupa");
         List<String> members = new ArrayList<>();
         members.add("Hubert Kompanowski");
         members.add("Alicja Brajner");
@@ -59,6 +60,8 @@ public class NewGroupIncome extends AppCompatActivity implements AdapterView.OnI
 
     public void backToGroup(View view) {
         Intent intent_back = new Intent(this, GroupHome.class);
+        intent_back.putExtra("nazwaUzytkownika", username);
+        intent_back.putExtra("idUzytkownika", userId);
         startActivity(intent_back);
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewGroupIncome">
+    tools:context=".view.NewGroupIncome">
 
     <TextView
         android:id="@+id/background"
@@ -137,6 +137,28 @@
 
 
     </RelativeLayout>
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:fadingEdge="horizontal|vertical"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.508"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.57">-->
+
+<!--        <ListView-->
+<!--            android:id="@+id/listaUzytkownikow"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:cacheColorHint="#D32F2F"-->
+<!--            android:clickable="true"-->
+<!--            android:divider="#D32F2F"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textFilterEnabled="false" />-->
+<!--    </RelativeLayout>-->
 
 
 </android.support.constraint.ConstraintLayout>

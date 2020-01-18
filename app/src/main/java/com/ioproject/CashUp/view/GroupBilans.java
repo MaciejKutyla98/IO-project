@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.ioproject.CashUp.R;
 
@@ -15,6 +14,9 @@ import java.util.ArrayList;
 
 public class GroupBilans extends AppCompatActivity {
 
+    private String userId;
+    private String username;
+    private String chosenGroup;
     private Button NewGroupIncome;
     ListView listViewOutgo;
     ListView listViewIncome;
@@ -28,14 +30,17 @@ public class GroupBilans extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_bilans);
 
+        username = getIntent().getStringExtra("nazwaUzytkownika");
+        userId = getIntent().getStringExtra("idUzytkownika");
+        chosenGroup = getIntent().getStringExtra("grupa");
 
         listViewOutgo = (ListView) findViewById(R.id.listviewWydatkiGrupy);
-        String summary = null;
+//        String summary = null;
 //        try {
-////            FromJSONToString fromJSONToString = new FromJSONToString(Repository.showAllTransactions(userId));
-////            income = fromJSONToString.fromJSONTOStringIncome();
-////            outgo = fromJSONToString.fromJSONTOStringOutgo();
-////            summary = fromJSONToString.fromJSONBalanceSheet() + ".00";
+//            FromJSONToString fromJSONToString = new FromJSONToString(Repository.showAllTransactions(userId));
+//            income = fromJSONToString.fromJSONTOStringIncome();
+//            outgo = fromJSONToString.fromJSONTOStringOutgo();
+//            summary = fromJSONToString.fromJSONBalanceSheet() + ".00";
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        } catch (JSONException e) {
@@ -48,7 +53,7 @@ public class GroupBilans extends AppCompatActivity {
 
         ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_list_item_1, income);
         listViewIncome.setAdapter(arrayAdapter2);
-        ((TextView) findViewById(R.id.bilansBazy)).setText(summary);
+//        ((TextView) findViewById(R.id.bilansBazy)).setText(summary);
 
         NewGroupIncome = (Button) findViewById(R.id.wyborGrupy);
         NewGroupIncome.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +65,10 @@ public class GroupBilans extends AppCompatActivity {
     }
 
     public void newGroupIncome(View view) {
-        Intent intent_newGroupIncomee = new Intent(this, com.ioproject.CashUp.NewGroupIncome.class);
+        Intent intent_newGroupIncomee = new Intent(this, com.ioproject.CashUp.view.NewGroupIncome.class);
+        intent_newGroupIncomee.putExtra("nazwaUzytkownika", username);
+        intent_newGroupIncomee.putExtra("grupa", chosenGroup);
+        intent_newGroupIncomee.putExtra("idUzytkownika", userId);
         startActivity(intent_newGroupIncomee);
     }
 

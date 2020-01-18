@@ -37,7 +37,9 @@ public class GroupHome extends AppCompatActivity implements AdapterView.OnItemSe
         userId = getIntent().getStringExtra("idUzytkownika");
 
         try {
-            FromJSONToString fromJSONToString = new FromJSONToString(Repository.getAllUserGroups(userId));
+            String result = Repository.getAllUserGroups(username);
+            FromJSONToString fromJSONToString = new FromJSONToString(result);
+            System.out.println(result);
             groups = fromJSONToString.fromJSONToStringGetAllUserGroups();
             Spinner listOfGroups = findViewById(R.id.spinner_groups);
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, groups);
@@ -84,7 +86,6 @@ public class GroupHome extends AppCompatActivity implements AdapterView.OnItemSe
                     startActivity(i);
                 }
                 break;
-
         }
         return false;
     }

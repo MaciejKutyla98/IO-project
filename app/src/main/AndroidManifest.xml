@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".UsersList" />
-        <activity android:name=".NewGroupIncome" />
+        <activity android:name=".view.NewGroupIncome" />
         <activity android:name=".ExampleAdapter" />
     </application>
 

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ioproject.CashUp.ExampleAdapter;
@@ -19,8 +20,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class NewGroup extends AppCompatActivity {
-    private ArrayList<UsersList> listOfUsers;
-    private ArrayList<String> userListToDatabase;
+    private ArrayList<UsersList> listOfUsers = new ArrayList<>();
+    private ArrayList<String> userListToDatabase = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private ExampleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -31,6 +32,8 @@ public class NewGroup extends AppCompatActivity {
     private String description;
     private Button addGroupButton;
     private Button addPersonButton;
+    ListView listViewOutgo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +43,23 @@ public class NewGroup extends AppCompatActivity {
 
         username = getIntent().getStringExtra("nazwaUzytkownika");
         userId = getIntent().getStringExtra("idUzytkownika");
-        description = ((EditText) findViewById(R.id.NewGroupDescription)).getText().toString();
-        groupName = ((EditText) findViewById(R.id.NameOfGroup)).getText().toString();
 
+        userListToDatabase.add(username);
         addGroupButton = (Button) findViewById(R.id.AddNewGroup);
         addGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
+                    description = ((EditText) findViewById(R.id.NewGroupDescription)).getText().toString();
+                    groupName = ((EditText) findViewById(R.id.NameOfGroup)).getText().toString();
                     String result = Repository.addNewGroup(groupName, description, userListToDatabase);
+                    System.out.println(result);
                     if(result.trim().equals("Added") && !groupName.isEmpty() && !userListToDatabase.isEmpty()){
-                        Toast.makeText(getApplicationContext(), "poprawne dodanie wydatku", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
                         backToGroupHome(view);
-
+                    }
+                    else if(result.trim().equals("empty")){
+                        Toast.makeText(getApplicationContext(), "Nie masz jeszcze żadnych grup", Toast.LENGTH_SHORT).show();
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "coś poszło nie tak", Toast.LENGTH_SHORT).show();
@@ -64,15 +71,22 @@ public class NewGroup extends AppCompatActivity {
         });
 
         addPersonButton = (Button) findViewById(R.id.AddNewPerson);
-        addGroupButton.setOnClickListener(new View.OnClickListener() {
+        addPersonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     newUser = ((EditText) findViewById(R.id.PersonNick)).getText().toString();
                     String result = Repository.doesUserExist(newUser);
+                    System.out.println(result);
                     if(result.trim().equals("YES")){
-                        listOfUsers.add(new UsersList(R.drawable.ic_child, newUser, ""));
-                        userListToDatabase.add(result);
+                        if(!userListToDatabase.contains(newUser)){
+                            listOfUsers.add(new UsersList(R.drawable.ic_android, newUser, ""));
+                            userListToDatabase.add(newUser);
+                            buildRecyclerView();
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), "użytkownik już dodany", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "taki użytkownik nie istnieje", Toast.LENGTH_SHORT).show();
@@ -82,7 +96,6 @@ public class NewGroup extends AppCompatActivity {
                 }
             }
         });
-        buildRecyclerView();
     }
 
     public void removeItem(int position) {
