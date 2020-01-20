@@ -3,7 +3,6 @@ package com.ioproject.CashUp.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -88,7 +87,9 @@ public class NewGroup extends AppCompatActivity {
                         if(!userListToDatabase.contains(newUser)){
                             listOfUsers.add(new UsersList(R.drawable.ic_android, newUser, ""));
                             userListToDatabase.add(newUser);
-                            buildRecyclerView();
+                            Toast.makeText(getApplicationContext(), "użytkownik dodany" + newUser, Toast.LENGTH_SHORT).show();
+                            ((EditText) findViewById(R.id.PersonNick)).setText("");
+                            //buildRecyclerView();
                         }
                         else{
                             Toast.makeText(getApplicationContext(), "użytkownik już dodany", Toast.LENGTH_SHORT).show();
@@ -127,10 +128,10 @@ public class NewGroup extends AppCompatActivity {
      * This method builds RecyclerView
      */
     public void buildRecyclerView() {
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ExampleAdapter(listOfUsers);
+////        mRecyclerView = findViewById(R.id.recyclerView);
+//        mRecyclerView.setHasFixedSize(true);
+//        mLayoutManager = new LinearLayoutManager(this);
+//        mAdapter = new ExampleAdapter(listOfUsers);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);

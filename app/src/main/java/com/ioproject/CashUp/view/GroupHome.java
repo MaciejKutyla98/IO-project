@@ -48,17 +48,17 @@ public class GroupHome extends AppCompatActivity implements AdapterView.OnItemSe
             FromJSONToString fromJSONToString = new FromJSONToString(result);
             System.out.println(result);
             groups = fromJSONToString.fromJSONToStringGetAllUserGroups();
-            Spinner listOfGroups = findViewById(R.id.spinner_groups);
+            final Spinner listOfGroups = findViewById(R.id.spinner_groups);
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, groups);
             dataAdapter.setDropDownViewResource(android.R.layout. simple_spinner_dropdown_item);
             listOfGroups.setAdapter(dataAdapter);
             listOfGroups.setOnItemSelectedListener(this);
 
-            chosenGroup = listOfGroups.getSelectedItem().toString();
             goToGroups = (Button) findViewById(R.id.goToGroup);
             goToGroups.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
+                    chosenGroup = listOfGroups.getSelectedItem().toString();
                     goToOtherGroup(v);
                 }
             });

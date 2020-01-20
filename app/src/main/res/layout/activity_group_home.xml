@@ -29,7 +29,8 @@
         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
         android:textColor="#66ffcc"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/spinner_groups"
@@ -61,19 +62,33 @@
         app:layout_constraintTop_toTopOf="@+id/background"
         app:layout_constraintVertical_bias="0.207" />
 
+    <!--    <Button-->
+<!--        android:id="@+id/goToGroup"-->
+<!--        android:layout_width="201dp"-->
+<!--        android:layout_height="85dp"-->
+<!--        android:background="@android:color/black"-->
+<!--        android:text="Przejdź grupy"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.809"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/background"-->
+<!--        app:layout_constraintVertical_bias="0.538"-->
+<!--        tools:textColor="#66ffcc" />-->
+
     <Button
         android:id="@+id/goToGroup"
         android:layout_width="201dp"
         android:layout_height="85dp"
         android:background="@android:color/black"
-        android:text="Przejdź grupy"
+        android:text="wybierz grupę"
+        android:textColor="#66ffcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.809"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background"
-        app:layout_constraintVertical_bias="0.538"
-        tools:textColor="#66ffcc" />
+        app:layout_constraintVertical_bias="0.532" />
 
     <Button
         android:id="@+id/newGroup"
